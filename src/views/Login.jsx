@@ -103,20 +103,27 @@ const Input = styled.input`
     @media (min-width: 375px) {
         width: 100%;
         height: 30px;
+         padding: 1px;
 
     }
   
     @media (min-width: 768px) {
         width: 100%;
         height: 40px;
+        max-width: 620px;
+         padding: 1px;
     }
     @media (min-width: 1024px) {
         width: 100%;  
         height: 40px;
+        max-width: 620px;
+         padding: 1px;
     }
     @media (min-width: 1440px) {
         width: 100%;
-        height: 40px;
+        padding: 1px;
+        max-width: 620px;
+        
     }
 
    
