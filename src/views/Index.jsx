@@ -5,23 +5,41 @@ import Formulario from '../components/Formulario'
 import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
 import ImagenCripto from '../img/imagen-criptos.png'
+import { Link } from 'react-router-dom'
 
 
 const Contenedor = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  @media (min-width: 375px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 2rem;
+    
+  }
+
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
   }
+  
 `
 const Imagen = styled.img`
   max-width: 400px;
   width: 80%;
   margin: 100px auto 0 auto;
   display: block;
+
+  @media (min-width: 375px) {
+    margin-top: 80px;
+    width: 60%;
+  }
+
+  @media (min-width: 992px) {
+    margin-top: 80px;
+  }
 `
 
 const Heading = styled.h1`
@@ -45,50 +63,54 @@ const Heading = styled.h1`
 const Index = () => {
 
 
-    const [monedas, setMonedas] = useState({})
-    const [resultado, setResultado] = useState({})
-    const [cargando, setCargando] = useState(false)
+  const [monedas, setMonedas] = useState({})
+  const [resultado, setResultado] = useState({})
+  const [cargando, setCargando] = useState(false)
 
-    useEffect(() => {
-        if (Object.keys(monedas).length > 0) {
+  useEffect(() => {
+    if (Object.keys(monedas).length > 0) {
 
-            const cotizarCripto = async () => {
-                setCargando(true)
-                setResultado({})
+      const cotizarCripto = async () => {
+        setCargando(true)
+        setResultado({})
 
-                const { moneda, criptomoneda } = monedas
-                const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
+        const { moneda, criptomoneda } = monedas
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
 
-                const respuesta = await fetch(url)
-                const resultado = await respuesta.json()
+        const respuesta = await fetch(url)
+        const resultado = await respuesta.json()
 
-                setResultado(resultado.DISPLAY[criptomoneda][moneda])
+        setResultado(resultado.DISPLAY[criptomoneda][moneda])
 
-                setCargando(false)
-            }
+        setCargando(false)
+      }
 
-            cotizarCripto()
-        }
-    }, [monedas])
+      cotizarCripto()
+    }
+  }, [monedas])
 
   return (
-      <Contenedor>
-          <Imagen
-              src={ImagenCripto}
-              alt="imagenes criptomonedas"
-          />
+    <Contenedor>
+      <Imagen
+        src={ImagenCripto}
+        alt="imagenes criptomonedas"
+      />
 
-          <div>
-              <Heading>Cotiza Criptomonedas al Instante</Heading>
-              <Formulario
-                  setMonedas={setMonedas}
-              />
+      <div>
+        <Link to={'/'}
+          style={{ textDecoration: 'none' }}
+        >
+          <Heading>Cotiza Criptomonedas al Instante</Heading>
+        </Link>
+        <Formulario
+          setMonedas={setMonedas}
+        />
 
-              {cargando && <Spinner />}
-              {resultado.PRICE && <Resultado resultado={resultado} />}
-          </div>
+        {cargando && <Spinner />}
+        {resultado.PRICE && <Resultado resultado={resultado} />}
+      </div>
 
-      </Contenedor>
+    </Contenedor>
   )
 }
 

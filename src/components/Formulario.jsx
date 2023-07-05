@@ -20,6 +20,8 @@ const InputSubmit = styled.input`
         background-color: #7A7DFE;
         cursor: pointer;
     }
+   
+   
 `
 
 const Formulario = ({setMonedas}) => {
@@ -71,7 +73,9 @@ const Formulario = ({setMonedas}) => {
             <form
                 onSubmit={handleSubmit}
             >
-                <SelectMonedas />
+                <SelectMonedas 
+                    
+                />
                 <SelectCriptomoneda />
                 
                 <InputSubmit 

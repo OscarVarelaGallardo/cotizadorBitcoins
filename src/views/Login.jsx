@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import img from '../img/imagen-criptos.png'
+import { Link } from 'react-router-dom'
 
 const Container = styled.div`
 
@@ -14,6 +15,7 @@ const Container = styled.div`
  
 
   `
+
   const Form = styled.form`
  width: 80%;
   display: flex;
@@ -28,10 +30,14 @@ const H1 = styled.h1`
  color: white;
    font-size: 20px;     
    justify-content: center;
+ 
+
 
   @media (min-width: 375px) {
   font-size: 30px;
   text-align: center;
+  text-decoration: none;
+
   }
   @media (min-width: 768px) {
   font-size: 40px;
@@ -192,7 +198,13 @@ const P = styled.p`
 const Login = () => {
   return (
     <Container>
-      <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
+        <Link to="/"
+            style={{
+            textDecoration: 'none',
+            }}
+        >
+             <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
+        </Link> 
       <Line />
       <Imagen src={img} />
       <div

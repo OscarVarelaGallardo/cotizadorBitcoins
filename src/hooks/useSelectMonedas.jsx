@@ -12,8 +12,25 @@ const Label = styled.label`
 const Select = styled.select`
     width: 100%;
     font-size: 18px;
-    padding: 14px;
-    border-radius: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    @media (min-width: 375px) {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+
+    }
+    @media (min-width: 992px) {
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+    }
+    @media (min-width: 1200px) {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+    }
 `
 
 const useSelectMonedas = (label, opciones) => {

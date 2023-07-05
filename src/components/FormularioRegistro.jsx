@@ -45,7 +45,7 @@ const Input = styled.input`
     `
 
 const Button = styled.button`
-    background-color: #377BAA;
+    background-color: #9497FF;
     padding: 10px  30px 10px 30px;
     color: white;
     border-radius: 5px;
@@ -58,17 +58,20 @@ const Button = styled.button`
     text-transform: uppercase;
     width: 80%;
     min-width: 80%;
+
+    
+    
+    &:hover {
+        background-color: rgba(148, 151, 255, 0.8); 
+        cursor: pointer;
+    }
     @media (min-width: 375px) {
         padding: 10px  50px 10px 50px;
         width: 280px;
         min-width: 280px;
+      
     }   
 
-    
-    &:hover {
-        background-color: #2A5F8A;
-        cursor: pointer;
-    }
 
     `
 const Label = styled.label`
@@ -109,7 +112,7 @@ const FormularioRegistro = () => {
                       width: '100%',
                       display: 'flex',
                       flexDirection: 'row',
-                      justifyContent: 'space-between',
+                      justifyContent: 'center',
                       alignItems: 'center',
                   }}
               >
