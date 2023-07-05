@@ -1,14 +1,47 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
+
+const Form = styled.form`
+display: flex;
+flex - direction: column;
+align - items: flex - start;
+width: 100 %;
+
+margin: 10px;
+@media(min - width: 375px) {
+
+}
+    `
 const Input = styled.input`
-    width: 100%;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 20px;
+    background-color: white;
+    border: 1px solid #9497FF;
+    border-radius: 6px;
+    padding: .5px;
+    color: black;
+    margin-bottom: 10px;
     margin-top: 10px;
-    fontFamily: 'Inter', sans-serif;
+    min-width: 100%;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    
+
+    @media (min-width: 375px) {
+        width: 100%;
+        height: 30px;
+    }
+    @media (min-width: 768px) {
+        width: 100%;
+        height: 40px;
+    }
+    @media (min-width: 1024px) {
+        width: 100%;
+        height: 40px;
+    }
+    @media (min-width: 1440px) {
+        width: 100%;
+        height: 40px;
+    }
     `
 
 const Button = styled.button`
@@ -18,7 +51,19 @@ const Button = styled.button`
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    width: 80%;
+    min-width: 80%;
+    @media (min-width: 375px) {
+        padding: 10px  50px 10px 50px;
+        width: 280px;
+        min-width: 280px;
+    }   
+
     
     &:hover {
         background-color: #2A5F8A;
@@ -26,106 +71,39 @@ const Button = styled.button`
     }
 
     `
+const Label = styled.label`
+    color: white;
+    font-weight: normal;
+    Font-family: 'Inter', sans-serif;
+    width: 100%;
+    min-width: 100%;
+    `
 
 const FormularioRegistro = () => {
   return (
-   
 
-
-      <form
-          style={{
-              width: '50%',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'flex-start',
-          }}>
-          <div
-
-          >
-              <label
-                  style={{
-                      color: 'white',
-                      //Bold
-                      fontWeight: 'bold',
-                  }}
-              >Nombre</label>
+      <Form >
+          <div>
+              <Label
+                for="nombre"
+              >Nombre</Label>
               <Input
                   type="text"
-                  placeholder="Ejemplo: Juan"
-                  //poner el texto mas a la derecha
-                  style={{
-                      textAlign: 'start',
-                      width: '100%',
-                      minWidth: '100%',
-                      paddingLeft: '10px',
+                  id="nombre"
+                  placeholder="Ejemplo: Juan"/>
+              <Label>Fecha de Nacimiento</Label>
+              <Input type="date"></Input>
 
-                  }}
-
-              />
-              <label
-                  style={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      width: '100%',
-
-                  }}
-              >Fecha de Nacimiento</label>
-              <Input
-                  type="date"
-                  style={{
-                      paddingLeft: '10px',
-                      width: '100%',
-                      minWidth: '100%',
-
-
-                  }}
-
-              />
-
-              <label
-                  style={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      width: '100%',
-                      minWidth: '100%',
-                  }}
-              >Correo Electrónico</label>
+              <Label>Correo Electrónico</Label>
               <Input
                   type="email"
-                  placeholder="Ejemlo:correo@correo.com"
-                  style={{
-                      paddingLeft: '10px',
-                  }}
-              />
-              <label
-                  style={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                  }}
-              >Contraseña</label>
+                  placeholder="Ejemlo:correo@correo.com"/>
+              <Label>Contraseña</Label>
               <Input
                   type="password"
-                  placeholder="Ejemplo: 123456"
-                  style={{
-                      paddingLeft: '10px',
-
-                  }}
-              />
-              <label
-                  style={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                  }}
-              >Confirmar Contraseña</label>
-              <Input
-
-                  type="password"
-                  placeholder="Ejemplo: 123456"
-                  style={{
-                      paddingLeft: '10px',
-                  }}
-
-              />
+                  placeholder="Ejemplo: 123456" />
+              <Label >Repite tu contraseña</Label>
+              <Input  type="password"placeholder="Ejemplo: 123456" />
               <div
                   style={{
                       width: '100%',
@@ -141,7 +119,7 @@ const FormularioRegistro = () => {
               </div>
           </div>
 
-      </form>
+      </Form>
   )
 }
 
