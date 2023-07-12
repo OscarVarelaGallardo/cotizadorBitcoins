@@ -166,7 +166,7 @@ const Register = () => {
     return (
         <Container>
             <Link to="/"
-            style={{ textDecoration: 'none' }}
+           className='link'
             >
             <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
             </Link>
@@ -174,7 +174,7 @@ const Register = () => {
             <TituloFormulario>REGISTRATE</TituloFormulario>
             <ContainerFormulario >
                 <FormularioRegistro />
-                <Imagen src={img} alt="imagen"  />
+                <Imagen src={img} alt="imagen-bitcoin"  />
             </ContainerFormulario>
         </Container>
     )

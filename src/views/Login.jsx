@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import img from '../img/imagen-criptos.png'
-import { Link } from 'react-router-dom'
+import { Link, redirect } from 'react-router-dom'
+import sendData from '../helpers/peticiones'
 
 const Container = styled.div`
 
@@ -16,7 +17,7 @@ const Container = styled.div`
 
   `
 
-  const Form = styled.form`
+const Form = styled.form`
  width: 80%;
   display: flex;
   flex-direction: column;
@@ -93,12 +94,12 @@ const Imagen = styled.img`
     `
 const Input = styled.input`
     width: 10%;
-    height: 40px;
+    height: 50px;
     border-radius: 5px;
     border: none;
     margin-bottom: 20px;
     margin-top: 10px;
-    fontFamily: 'Inter', sans-serif;
+    fontFamily:     'Roboto', sans-serif;
 
     @media (min-width: 375px) {
         width: 100%;
@@ -168,7 +169,7 @@ const P = styled.p`
         font-size: 15px;
     }
     `
-    const A = styled.a`
+const A = styled.a`
     color: white;
     text-decoration: none;
     font-size: 15px;
@@ -185,7 +186,7 @@ const P = styled.p`
         font-size: 15px;
     }
     `
-    const Label = styled.label`
+const Label = styled.label`
     color: white;
     font-size: 15px;
     font-weight: bold;
@@ -203,42 +204,108 @@ const P = styled.p`
 
 
 const Login = () => {
-  return (
-    <Container>
-        <Link to="/"
-            style={{
-            textDecoration: 'none',
-            }}
-        >
-             <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
-        </Link> 
-      <Line />
-      <Imagen src={img} />
-      <div
-        style={{
-          width: '100%',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Form action="">
-           <Label htmlFor="">Correo electrónico</Label>
-              <Input type="text" />
-             <Label htmlFor="" >Contraseña</Label>
-              <Input type="password" />
-            <Button >Iniciar sesión</Button>
-            <P>
-              <A href="#">¿Olvidaste tu contraseña?</A>
-            </P>
-        </Form>
-      </div>
+    const [dataUser, setDataUser] = useState({
+        'email': '',
+        'password': ''
+    })
+
+    const handleSubmit = (e) => {
+        //Recuperar valores del formulario
+        e.preventDefault()
+        const { email, password } = dataUser
+        //Validar que no esten vacios
+        if (email.trim() === '' || password.trim() === '') {
+           Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Todos los campos son obligatorios',
+            })
+            return
+        }
+        sendData(dataUser)
 
 
-    </Container>
+    }
 
-  )
+    //Recupera los datos del formulario
+    const handleChangeData = (e) => {
+        setDataUser({
+            ...dataUser,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    return (
+        <Container>
+            <Link 
+                style={{
+                    textDecoration: 'none',
+                }}
+            
+            to="/">
+                <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
+            </Link>
+            <Line />
+            <Imagen src={img} />
+            <div
+                style={{
+                    width: '100%',
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <Form
+                    onSubmit={handleSubmit}
+                >
+                    <Label htmlFor="email">Correo electrónico</Label>
+                    <Input type="text"
+                        id='email'
+                        onChange={e => handleChangeData(e)}
+                        name='email'
+                            style={{
+                                width: '100%',
+                                height: '40px',
+                                maxWidth: '620px',
+                                padding: '1px',
+                                fontFamily: 'Roboto, sans-serif',
+                                fontSize: '15px',
+
+
+                            }}
+                        />
+                    <Label
+
+                        htmlFor="password" >Contraseña</Label>
+                    <Input type="password"
+
+                        onChange={e => handleChangeData(e)}
+                        name='password'
+                        id='password'
+                        style={{
+                            width: '100%',
+                            height: '40px',
+                            maxWidth: '620px',
+                            padding: '1px',
+                            fontFamily: 'Roboto, sans-serif',
+                            fontSize: '15px',
+
+                        }} />
+                    <Button
+                        type='submit'
+
+                    >Iniciar sesión</Button>
+                    <P>
+                        <A href="#">¿Olvidaste tu contraseña?</A>
+                    </P>
+                </Form>
+            </div>
+
+
+        </Container>
+
+    )
 }
 
 export default Login
