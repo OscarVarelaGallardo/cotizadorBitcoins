@@ -1,8 +1,152 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import img from '../img/imagen-criptos.png'
-import { Link, redirect } from 'react-router-dom'
-import sendData from '../helpers/peticiones'
+import { Link, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
+
+const URL = 'https://cotiza-bitcoin.onrender.com/login';
+const Login = () => {
+    const [response, setResponse] = useState([])
+    const [dataUser, setDataUser] = useState({
+        'email': '',
+        'password': ''
+    })
+    const navigate = useNavigate();
+
+
+    const sendData = (URL, { password, email }) => {
+
+        fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email,
+                password,
+
+            })
+        })
+            .then(response => response.json())
+            .then(data => {setResponse(data) })
+    }
+         
+    const handleSubmit = (e) => {
+    
+        e.preventDefault()
+        const { email, password } = dataUser
+      
+        if (email.trim() === '' || password.trim() === '') {
+           Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Todos los campos son obligatorios',
+            })
+            return
+        }
+            
+        sendData(URL, dataUser)
+
+        
+       if(response.message !== 'Inicio de sesión exitoso'){
+        
+        return Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario o contraseña incorrectos',
+        })
+           
+        }
+       if(response.message === 'Inicio de sesión exitoso'){
+        Swal.fire({
+            icon: 'success',
+            title: 'Bienvenido',
+            text: 'Inicio de sesión exitoso',
+        })
+        
+      
+        return navigate('/')
+     
+
+       }
+       else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Usuario o contraseña incorrectos',
+        })
+       }
+         
+    }
+
+    const handleChangeData = (e) => {
+        setDataUser({
+            ...dataUser,
+            [e.target.name]: e.target.value
+        })
+    }
+
+       
+
+
+    return (
+        <Container>
+            <Linka to="/">
+                <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
+            </Linka>
+            <Line />
+            <Imagen src={img} />
+            <FormularioContainer>
+                <Form
+                    onSubmit={handleSubmit}
+                >
+                    <Label htmlFor="email">Correo electrónico</Label>
+                    <Input type="text"
+                        id='email'
+                        onChange={e => handleChangeData(e)}
+                        name='email'
+                            
+                        />
+                    <Label  htmlFor="password" >Contraseña</Label>
+                    <Input 
+                        type="password"
+                        onChange={e => handleChangeData(e)}
+                        name='password'
+                        id='password'
+                        />
+                    <Button
+                        type='submit'
+                    >Iniciar sesión</Button>
+                    <P>
+                        <A href="#">¿Olvidaste tu contraseña?</A>
+                    </P>
+                </Form>
+            </FormularioContainer>
+
+
+        </Container>
+
+    )
+}
+
+export default Login
+
+const FormularioContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    `
+
+const Linka = styled(Link)`
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    `
 
 const Container = styled.div`
 
@@ -13,8 +157,6 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   
- 
-
   `
 
 const Form = styled.form`
@@ -93,42 +235,16 @@ const Imagen = styled.img`
        max-width: 320px;
     `
 const Input = styled.input`
-    width: 10%;
-    height: 50px;
-    border-radius: 5px;
-    border: none;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    fontFamily:     'Roboto', sans-serif;
-
-    @media (min-width: 375px) {
-        width: 100%;
-        height: 30px;
-         padding: 1px;
-
-    }
-  
-    @media (min-width: 768px) {
-        width: 100%;
-        height: 40px;
-        max-width: 620px;
-         padding: 1px;
-    }
-    @media (min-width: 1024px) {
-        width: 100%;  
-        height: 40px;
-        max-width: 620px;
-         padding: 1px;
-    }
-    @media (min-width: 1440px) {
-        width: 100%;
-        padding: 1px;
-        max-width: 620px;
-        
-    }
-
    
-
+    width: 100%;
+    height: 40px;
+    max-width: 620px;
+    padding: 1px;
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #9497FF;
     `
 
 const Button = styled.button`
@@ -190,6 +306,8 @@ const Label = styled.label`
     color: white;
     font-size: 15px;
     font-weight: bold;
+    margin-bottom: 10px;
+    font-family: Roboto, sans-serif;
     @media (min-width: 375px) {
         font-size: 16px;
     }
@@ -201,111 +319,3 @@ const Label = styled.label`
     }
    
     `
-
-
-const Login = () => {
-    const [dataUser, setDataUser] = useState({
-        'email': '',
-        'password': ''
-    })
-
-    const handleSubmit = (e) => {
-        //Recuperar valores del formulario
-        e.preventDefault()
-        const { email, password } = dataUser
-        //Validar que no esten vacios
-        if (email.trim() === '' || password.trim() === '') {
-           Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Todos los campos son obligatorios',
-            })
-            return
-        }
-        sendData(dataUser)
-
-
-    }
-
-    //Recupera los datos del formulario
-    const handleChangeData = (e) => {
-        setDataUser({
-            ...dataUser,
-            [e.target.name]: e.target.value
-        })
-    }
-
-    return (
-        <Container>
-            <Link 
-                style={{
-                    textDecoration: 'none',
-                }}
-            
-            to="/">
-                <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
-            </Link>
-            <Line />
-            <Imagen src={img} />
-            <div
-                style={{
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
-                <Form
-                    onSubmit={handleSubmit}
-                >
-                    <Label htmlFor="email">Correo electrónico</Label>
-                    <Input type="text"
-                        id='email'
-                        onChange={e => handleChangeData(e)}
-                        name='email'
-                            style={{
-                                width: '100%',
-                                height: '40px',
-                                maxWidth: '620px',
-                                padding: '1px',
-                                fontFamily: 'Roboto, sans-serif',
-                                fontSize: '15px',
-
-
-                            }}
-                        />
-                    <Label
-
-                        htmlFor="password" >Contraseña</Label>
-                    <Input type="password"
-
-                        onChange={e => handleChangeData(e)}
-                        name='password'
-                        id='password'
-                        style={{
-                            width: '100%',
-                            height: '40px',
-                            maxWidth: '620px',
-                            padding: '1px',
-                            fontFamily: 'Roboto, sans-serif',
-                            fontSize: '15px',
-
-                        }} />
-                    <Button
-                        type='submit'
-
-                    >Iniciar sesión</Button>
-                    <P>
-                        <A href="#">¿Olvidaste tu contraseña?</A>
-                    </P>
-                </Form>
-            </div>
-
-
-        </Container>
-
-    )
-}
-
-export default Login
