@@ -4,27 +4,90 @@ import img from '../img/imagen-criptos.png'
 import FormularioRegistro from '../components/FormularioRegistro'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import Swal from 'sweetalert2'
+import Error from '../components/Error'
+
 const Register = () => {
+    const [error, setError] = useState(false)
+    const [newUser, setNewUser] = useState({
+        nombre: '',
+        apellidos: '',
+        fecha_nacimiento: '',
+        email: '',
+        password: '',
+    })
+    const sendRegister = ({ nombre, apellidos, fecha_nacimiento, email, password }) => {
+        const URL = 'https://cotiza-bitcoin.onrender.com/login/register';
+        fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre,
+                apellidos,
+                fecha_nacimiento,
+                email,
+                password,
+
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+    }
+  
+
+    const handleChangeData = (e) => {
+        setNewUser({
+            ...newUser,
+            [e.target.name]: e.target.value
+        })
+       
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(newUser)
+        setNewUser({
+            ...newUser,
+            [e.target.name]: e.target.value
+        })
+        const { nombre, apellidos, fecha_nacimiento, email, password, repetPassword } = newUser
+        if (nombre.trim() === '' || fecha_nacimiento.trim() === '' || email.trim() === '' || password.trim() === '' || apellidos.trim() === '') {
+            setError(true)
+            return
+        }
 
 
-
+        if (password !== repetPassword) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Las contraseñas no coinciden',
+            })
+            return
+        }
+        setError(false)
+        sendRegister(newUser)
     }
+
+
+
     return (
         <Container>
-            <Linka
-                to="/">
-                <H1
-                >COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
+            <Linka to="/">
+                <H1  >COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
             </Linka>
             <Line />
             <TituloFormulario>REGISTRATE</TituloFormulario>
+
+            {error ? <Error>Todos los campos son obligatorios</Error> : null}
             <ContainerFormulario >
                 <FormularioRegistro
+                
                     handleSubmit={handleSubmit}
+                    handleChangeData={handleChangeData}
+                    setError={setError}
                 />
                 <Imagen src={img} alt="imagen-bitcoin" /> 
             </ContainerFormulario>

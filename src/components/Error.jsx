@@ -22,7 +22,7 @@ const Texto = styled.div`
     font-weight: 700;
     text-align: center;
     border-radius: 6px;
-   
     margin-bottom: 20px;
-    width: 100%;
+    width: 70%;
+   
 `

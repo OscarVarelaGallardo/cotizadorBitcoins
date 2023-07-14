@@ -8,6 +8,10 @@ import Layout from './components/Layout'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Register from './views/Register'
 import Login from './views/Login'
+import Settings from './views/Settings'
+import PlanesPremium from './views/Premium/PlanesPremium'
+import FormaPago from './views/Premium/FormaPago'
+import Error from './views/Error'
 
 const router = createBrowserRouter([
   {
@@ -25,7 +29,24 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login/>,
+      },
+      {
+        path:'/settings',
+        element:<Settings/>
+      },
+      {
+       path:'/planes-premium',
+        element:<PlanesPremium/> 
+      },
+      {
+        path:'/forma-pago',
+        element:<FormaPago/>
+      },
+      {
+        path: '*',
+        element: <Error/>,
       }
+
       
     ],
   },

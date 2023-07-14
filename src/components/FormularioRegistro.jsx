@@ -1,82 +1,18 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { useState } from 'react'
-import Error from './Error'
-import Swal from 'sweetalert2'
-
-const FormularioRegistro = () => {
-    const [error, setError] = useState(false)
-    const [newUser, setNewUser] = useState({
-        nombre: '',
-        apellidos: '',
-        fecha_nacimiento: '',
-        email: '',
-        password: '',
-    })
-
-    const sendRegister = ({nombre, apellidos, fecha_nacimiento, email, password}) => {
-        const URL = 'https://cotiza-bitcoin.onrender.com/login/register';
-        fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nombre,
-                apellidos,
-                fecha_nacimiento,
-                email,
-                password,
-
-            })
-        })
-            .then(response => response.json())
-            .then(data => console.log(data))
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        setNewUser({
-            ...newUser,
-            [e.target.name]: e.target.value
-        })
-        console.log(newUser)
-        const { nombre, apellidos, fecha_nacimiento, email, password, repetPassword } = newUser
-        if (nombre.trim() === '' || fecha_nacimiento.trim() === '' || email.trim() === '' || password.trim() === '' || apellidos.trim() === '') {
-            setError(true)
-            return
-        }
 
 
-        if (password !== repetPassword) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Las contraseñas no coinciden',
-            })
-            return
-        }
-        setError(false)
-
-        console.log(newUser);
+const FormularioRegistro = ({ handleChangeData, handleSubmit }) => {
+   
 
 
-        sendRegister(newUser)
-    }
-
-    const handleChangeData = (e) => {
-        setNewUser({
-            ...newUser,
-            [e.target.name]: e.target.value
-        })
-    }
 
     return (
         <>
 
             <Form
                 onSubmit={handleSubmit} >
-                {error ? <Error>Todos los campos son obligatorios</Error> : null}
+               
                 <div>
                     <Label
                         htmlFor="nombre"
@@ -89,7 +25,7 @@ const FormularioRegistro = () => {
                         onChange={e => handleChangeData(e)}
                     />
                     <Label
-                        htmlFor="apellido"
+                        htmlFor="apellidos"
                     >Apellidos</Label>
                     <Input
                         type="text"
@@ -106,6 +42,10 @@ const FormularioRegistro = () => {
                         name='fecha_nacimiento'
                         id='fecha_nacimiento'
                         type="date"
+                        security='off'
+                        size={10}
+                        placeholder="Ejemplo: 01/01/2000"
+                        yearRange="1950:2005"
                         onChange={e => handleChangeData(e)}
                     ></Input>
 
@@ -117,6 +57,7 @@ const FormularioRegistro = () => {
                         id='email'
                         type="email"
                         placeholder="Ejemplo:correo@correo.com"
+                        autoComplete='true'
                         onChange={e => handleChangeData(e)}
                     />
                     <Label

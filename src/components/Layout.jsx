@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
+import Footer from './Footer'
 
 
 
@@ -43,32 +44,44 @@ const Layout = () => {
                 {
                     //validar que este en la pagina de login 
                     window.location.pathname === '/login' ? null :
-            <Button
-                type="button"
-                onClick={() =>
-                    {
-                        navigate('/login')
+                        <Button
+                            type="button"
+                            onClick={() => {
+                                navigate('/login')
+                            }
+                            }
+                        >
+                            Iniciar Sesión
+
+                        </Button>
+                }       {window.location.pathname === '/register' ? null :
+                    <Button
+                        type="button"
+                        onClick={() => {
+
+                            navigate('/register')
+                        }
+                        }
+                    >
+                        Registrarse
+                    </Button>
+
+                }
+
+                <Button
+                    type="button"
+                    onClick={() => {
+                        navigate('settings')
                     }
-                }
-            >
-                Iniciar Sesión
+                    }
+                >
+                    Configuración
 
-            </Button>
-}       {   window.location.pathname === '/register' ? null :
-            <Button
-                type="button"
-                onClick={() => 
-                    { 
-
-                        navigate('/register')
-                     }
-                }
-            >
-                Registrarse
-            </Button>
-}
+                </Button>
             </Container>
-            <Outlet />
+            <Outlet >
+            </Outlet>
+            <Footer />
         </div>
     )
 }
