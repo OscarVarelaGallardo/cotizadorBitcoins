@@ -7,11 +7,12 @@ import { useState } from 'react'
 
 const Settings = () => {
     //modificar el estado de isUserPremium
-    const [isUserPremium, setIsUserPremium] = useState(false)
+    const [isUserPremium, setIsUserPremium] = useState(true)
 
     return (
         <>
             <Container>
+                
                 <Heading>COTIZA <Span>CRIPTOMONEDAS </Span>
                     AL INSTANTE
                 </Heading>

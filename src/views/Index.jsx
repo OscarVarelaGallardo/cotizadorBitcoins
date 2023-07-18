@@ -8,58 +8,7 @@ import ImagenCripto from '../img/imagen-criptos.png'
 import { Link } from 'react-router-dom'
 
 
-const Contenedor = styled.div`
-  max-width: 1200px;
-  margin: 0 auto;
-  width: 100%;
-  @media (min-width: 375px) {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    column-gap: 2rem;
-    
-  }
 
-  @media (min-width: 992px) {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    column-gap: 2rem;
-  }
-  
-`
-const Imagen = styled.img`
-  max-width: 400px;
-  width: 80%;
-  margin: 100px auto 0 auto;
-  display: block;
-
-  @media (min-width: 375px) {
-    margin-top: 80px;
-    width: 60%;
-  }
-
-  @media (min-width: 992px) {
-    margin-top: 80px;
-  }
-`
-
-const Heading = styled.h1`
-  font-family: 'Lato', sans-serif;
-  color: #FFF;
-  text-align: center;
-  font-weight: 700;
-  margin-top: 80px;
-  margin-bottom: 50px;
-  font-size: 34px;
-
-  &::after {
-    content: '';
-    width: 100px;
-    height: 6px;
-    background-color: #66A2FE;
-    display: block;
-    margin: 10px auto 0 auto;
-  }
-`
 const Index = () => {
 
 
@@ -115,3 +64,58 @@ const Index = () => {
 }
 
 export default Index
+
+const Contenedor = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  @media (min-width: 375px) {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    column-gap: 2rem;
+    
+  }
+
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+  }
+  
+`
+const Imagen = styled.img`
+  max-width: 400px;
+  width: 80%;
+  margin: 100px auto 0 auto;
+
+  display: block;
+
+  @media (min-width: 375px) {
+    margin-top: 80px;
+    width: 60%;
+  }
+
+  @media (min-width: 992px) {
+    margin-top: 80px;
+      margin-bottom:20rem;
+  }
+`
+
+const Heading = styled.h1`
+  font-family: 'Lato', sans-serif;
+  color: #FFF;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 80px;
+  margin-bottom: 50px;
+  font-size: 34px;
+
+  &::after {
+    content: '';
+    width: 100px;
+    height: 6px;
+    background-color: #66A2FE;
+    display: block;
+    margin: 10px auto 0 auto;
+  }
+`

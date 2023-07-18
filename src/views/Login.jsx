@@ -1,82 +1,61 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import styled from '@emotion/styled'
 import img from '../img/imagen-criptos.png'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import sendData from '../helpers/index.js'
+import AuthContext from '../context/AuthProvider'
 
 const URL = 'https://cotiza-bitcoin.onrender.com/login';
+
 const Login = () => {
-    const [response, setResponse] = useState([])
+
     const [dataUser, setDataUser] = useState({
         'email': '',
         'password': ''
     })
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
+    const {setIsAuth, setUser } = useContext(AuthContext)
 
-    const sendData = (URL, { password, email }) => {
-
-        fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email,
-                password,
-
-            })
-        })
-            .then(response => response.json())
-            .then(data => {setResponse(data) })
-    }
-         
+  
     const handleSubmit = (e) => {
-    
+
         e.preventDefault()
         const { email, password } = dataUser
-      
+
         if (email.trim() === '' || password.trim() === '') {
-           Swal.fire({
+            Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: 'Todos los campos son obligatorios',
             })
             return
         }
-            
         sendData(URL, dataUser)
+            .then((data) => {
+                if(data){
+                    setIsAuth(true)
+                    setUser(data)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Bienvenido',
+                        timer: 1500
+                    })
+                    navigate('/')
+                }
+                else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Usuario o contraseña incorrectos',
+                    })
+                }
+            }
+            )
 
-        
-       if(response.message !== 'Inicio de sesión exitoso'){
-        
-        return Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Usuario o contraseña incorrectos',
-        })
-           
-        }
-       if(response.message === 'Inicio de sesión exitoso'){
-        Swal.fire({
-            icon: 'success',
-            title: 'Bienvenido',
-            text: 'Inicio de sesión exitoso',
-        })
-        
-      
-        return navigate('/')
-     
 
-       }
-       else{
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Usuario o contraseña incorrectos',
-        })
-       }
-         
+
     }
 
     const handleChangeData = (e) => {
@@ -86,7 +65,7 @@ const Login = () => {
         })
     }
 
-       
+
 
 
     return (
@@ -105,15 +84,15 @@ const Login = () => {
                         id='email'
                         onChange={e => handleChangeData(e)}
                         name='email'
-                            
-                        />
-                    <Label  htmlFor="password" >Contraseña</Label>
-                    <Input 
+
+                    />
+                    <Label htmlFor="password" >Contraseña</Label>
+                    <Input
                         type="password"
                         onChange={e => handleChangeData(e)}
                         name='password'
                         id='password'
-                        />
+                    />
                     <Button
                         type='submit'
                     >Iniciar sesión</Button>
@@ -255,8 +234,6 @@ const Button = styled.button`
     border-radius: 5px;
     border: none;
     cursor: pointer;
-   
-    
     &:hover {
         background-color: #2A5F8A;
         cursor: pointer;

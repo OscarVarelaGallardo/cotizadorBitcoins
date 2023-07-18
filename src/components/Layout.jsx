@@ -1,9 +1,87 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Footer from './Footer'
+import AuthContext from '../context/AuthProvider'
 
 
+const Layout = () => {
+    const navigate = useNavigate()
+    const { setIsAuth, isAuth } = useContext(AuthContext)
+
+    return (
+        <div>
+            <Container>
+                {
+                    
+                    window.location.pathname === '/login' || isAuth ? null
+                        :
+                        <Button
+                            type="button"
+                            onClick={() => {
+                                navigate('/login')
+                            }
+                            }
+                        >
+                            Iniciar Sesión
+
+                        </Button>
+                }       {window.location.pathname === '/register' || isAuth ? null :
+                    <Button
+                        type="button"
+                        onClick={() => {
+
+                            navigate('/register')
+                        }
+                        }
+                    >
+                        Registrarse
+                    </Button>
+
+                }
+                {window.location.pathname === '/settings' || !isAuth ? null :
+                    <>                    <Button
+                        type="button"
+                        onClick={() => {
+
+                            navigate('/settings')
+                        }
+                        }
+                    >
+                        Configuración
+                    </Button>
+                        <Button
+                            type="button"
+                            onClick={() => {
+                                setIsAuth(false)
+                                navigate('/')
+                            }}>
+                            Cerrar Sesión
+                        </Button>
+                    </>
+
+                }
+
+
+
+
+            </Container>
+            <Headers>Token <Span> Trade</Span></Headers>
+            <Outlet >
+            </Outlet>
+            <Footer />
+        </div>
+    )
+}
+
+export default Layout
+
+
+const Span = styled.span`
+    color: #fff;
+     font-family:roboto;
+      font-weight: 900;
+`
 
 const Button = styled.button`
     background-color: #377BAA;
@@ -21,6 +99,17 @@ const Button = styled.button`
         
 
 `
+const Headers = styled.div`
+    font-family: roboto,sans-serif,serif;
+    color: #F9A826;
+    text-align: center;
+    font-weight: 900;
+    font-size: 3.7rem;
+    
+    
+
+`
+
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
@@ -34,56 +123,3 @@ const Container = styled.div`
     }
 `
 
-
-
-const Layout = () => {
-    const navigate = useNavigate()
-    return (
-        <div>
-            <Container>
-                {
-                    //validar que este en la pagina de login 
-                    window.location.pathname === '/login' ? null :
-                        <Button
-                            type="button"
-                            onClick={() => {
-                                navigate('/login')
-                            }
-                            }
-                        >
-                            Iniciar Sesión
-
-                        </Button>
-                }       {window.location.pathname === '/register' ? null :
-                    <Button
-                        type="button"
-                        onClick={() => {
-
-                            navigate('/register')
-                        }
-                        }
-                    >
-                        Registrarse
-                    </Button>
-
-                }
-
-                <Button
-                    type="button"
-                    onClick={() => {
-                        navigate('settings')
-                    }
-                    }
-                >
-                    Configuración
-
-                </Button>
-            </Container>
-            <Outlet >
-            </Outlet>
-            <Footer />
-        </div>
-    )
-}
-
-export default Layout
