@@ -9,27 +9,28 @@ import { Link } from 'react-router-dom'
 const Footer = () => {
     return (
         <Container>
+            <Container_info>
+                <TextFooter>
+                    ¿Quieres saber como invertir en criptomonedas ?
+                </TextFooter>
+                <UL>
+
+                    <LI>
+                        <Linke to="/Blog">Nuestro Blog</Linke>
+                        <Linke to="/Blog">¿Qué es una criptomoneda?</Linke>
+                        <Linke to="/Blog">¿Cómo invertir ?</Linke>
+                        <Linke to="/Blog">¿Qué es el bitcoin?</Linke>
+                        <Linke to="/Blog">¿Qué es el blockchain?</Linke>
+                        <Linke to="/Blog">¿Qué es el minado ?</Linke>
+                    </LI>
+                </UL>
+            </Container_info>
+            <Link to="https://min-api.cryptocompare.com">
             <IMG
                 src={imgTrusted}
                 alt="trusted"
             />
-           
-            <Container_info>
-                
-            <UL>
-                    <TextFooter>
-                        ¿Quieres saber como invertir en criptomonedas ?
-                    </TextFooter>
-                <LI>
-                   <Linke to="/Blog">Nuestro Blog</Linke>
-                    <Linke to="/Blog">¿Qué es una criptomoneda?</Linke>
-                    <Linke to="/Blog">¿Cómo invertir ?</Linke>
-                    <Linke to="/Blog">¿Qué es el bitcoin?</Linke>
-                    <Linke to="/Blog">¿Qué es el blockchain?</Linke>
-                    <Linke to="/Blog">¿Qué es el minado ?</Linke>
-                </LI>
-            </UL>
-            </Container_info>
+            </Link>
             <Text>
                 Síguenos en nuestras redes sociales
             </Text>
@@ -68,18 +69,23 @@ const TextFooter = styled.p`
     font-family: 'Lato', sans-serif, 'system-ui';
     color: #FFF;
     font-weight: 900;
-    font-size: 1.5rem;
-    margin-top: 7rem;
+    font-size: 2.5rem;
+  
     margin-bottom: 1rem;
     text-align: center;
     margin: 8rem auto;
+    @media (min-width: 375px) {
+        font-size: 1.9rem;
+    }
+
     `
 
 const Container_info = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-  
-    
+    column-gap: 2rem;
+    justify-items: center;
+
     `
 
 
@@ -110,10 +116,28 @@ const UL = styled.ul`
     display: flex;
     flex-direction: column;
     padding: 3rem;
-    justify-content: space-around;
     width: 100%;
     margin: 0 auto;
     text-decoration: none;
+    @media (min-width: 375px) {
+        display: flex;
+        flex-direction: column;
+        padding: 3rem;
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto;
+        text-decoration: none;
+    }
+
+    @media (min-width: 768px) {
+        display: flex;
+        flex-direction: column;
+        padding: 3rem;
+        max-width: 1600px;
+        width: 100%;
+        margin: 0 auto;
+        text-decoration: none;
+    }
    
 `
 const LI = styled.li`
@@ -126,6 +150,7 @@ const LI = styled.li`
     font-size: 1.0rem;
     margin-bottom: 20px;
       list-style: none;
+      
       @media (min-width: 375px) {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -147,7 +172,10 @@ const Linke = styled(Link)`
     color: #FFF;
     text-align: center;
     text-decoration: none;
-    
+    font-size: 1.7rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+
     &:hover {
         color: #9497FF;
     }

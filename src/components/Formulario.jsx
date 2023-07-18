@@ -7,7 +7,9 @@ import { monedas } from '../data/monedas'
 const InputSubmit = styled.input`
     background-color: #9497FF;
     border: none;
-    width: 100%;
+    width: 40%;
+    display: block;
+    margin: 0 auto;
     padding: 10px;
     color: #FFF;
     font-weight: 700;

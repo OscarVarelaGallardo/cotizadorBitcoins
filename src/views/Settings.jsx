@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const Settings = () => {
     //modificar el estado de isUserPremium
-    const [isUserPremium, setIsUserPremium] = useState(true)
+    const [isUserPremium, setIsUserPremium] = useState(false)
 
     return (
         <>

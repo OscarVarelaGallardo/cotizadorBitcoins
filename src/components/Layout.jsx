@@ -13,7 +13,7 @@ const Layout = () => {
         <div>
             <Container>
                 {
-                    
+
                     window.location.pathname === '/login' || isAuth ? null
                         :
                         <Button
@@ -26,7 +26,8 @@ const Layout = () => {
                             Iniciar Sesión
 
                         </Button>
-                }       {window.location.pathname === '/register' || isAuth ? null :
+                }  
+                     {window.location.pathname === '/register' || isAuth ? null :
                     <Button
                         type="button"
                         onClick={() => {
@@ -39,8 +40,18 @@ const Layout = () => {
                     </Button>
 
                 }
-                {window.location.pathname === '/settings' || !isAuth ? null :
-                    <>                    <Button
+                {window.location.pathname === '/settings' || !isAuth ?
+                    <Button
+                        type="button"
+                        onClick={() => {
+                            navigate('/')
+                        }}
+                    >
+                        Volver al Inicio
+                    </Button>
+                    :
+                    <>                    
+                    <Button
                         type="button"
                         onClick={() => {
 

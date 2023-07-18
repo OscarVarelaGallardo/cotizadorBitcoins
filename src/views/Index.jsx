@@ -6,7 +6,9 @@ import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
 import ImagenCripto from '../img/imagen-criptos.png'
 import { Link } from 'react-router-dom'
-
+import { useCallback } from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 
 const Index = () => {
@@ -15,6 +17,17 @@ const Index = () => {
   const [monedas, setMonedas] = useState({})
   const [resultado, setResultado] = useState({})
   const [cargando, setCargando] = useState(false)
+
+  const particlesInit = useCallback(async engine => {
+    await loadFull(engine);
+  }, []);
+
+  const particlesLoaded = useCallback(async container => {
+    await console.log(container);
+  }, []);
+
+  
+
 
   useEffect(() => {
     if (Object.keys(monedas).length > 0) {
@@ -49,7 +62,7 @@ const Index = () => {
         <Link to={'/'}
           style={{ textDecoration: 'none' }}
         >
-          <Heading>Cotiza Criptomonedas al Instante</Heading>
+          <Heading>Cotiza <Span> Criptomonedas </Span>al Instante</Heading>
         </Link>
         <Formulario
           setMonedas={setMonedas}
@@ -57,29 +70,37 @@ const Index = () => {
 
         {cargando && <Spinner />}
         {resultado.PRICE && <Resultado resultado={resultado} />}
+        
       </div>
-
+     
     </Contenedor>
   )
 }
 
 export default Index
 
+const Span = styled.span`
+  color: #66A2FE;
+`
+
 const Contenedor = styled.div`
-  max-width: 1200px;
+
   margin: 0 auto;
   width: 100%;
+  
   @media (min-width: 375px) {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     column-gap: 2rem;
-    
+    max-width: 320px;
+      padding: 0 2rem;
   }
 
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
+      max-width: 100rem;
   }
   
 `
@@ -97,7 +118,8 @@ const Imagen = styled.img`
 
   @media (min-width: 992px) {
     margin-top: 80px;
-      margin-bottom:20rem;
+      margin-bottom:10rem;
+
   }
 `
 
@@ -109,6 +131,7 @@ const Heading = styled.h1`
   margin-top: 80px;
   margin-bottom: 50px;
   font-size: 34px;
+  text-transform: uppercase;
 
   &::after {
     content: '';
