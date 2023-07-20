@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Footer from './Footer'
 import AuthContext from '../context/AuthProvider'
-
+import { Link } from 'react-router-dom'
 
 const Layout = () => {
     const navigate = useNavigate()
@@ -12,6 +12,8 @@ const Layout = () => {
     return (
         <div>
             <Container>
+               
+
                 {
 
                     window.location.pathname === '/login' || isAuth ? null
@@ -41,14 +43,7 @@ const Layout = () => {
 
                 }
                 {window.location.pathname === '/settings' || !isAuth ?
-                    <Button
-                        type="button"
-                        onClick={() => {
-                            navigate('/')
-                        }}
-                    >
-                        Volver al Inicio
-                    </Button>
+                    null
                     :
                     <>                    
                     <Button
@@ -72,12 +67,14 @@ const Layout = () => {
                     </>
 
                 }
-
+              
 
 
 
             </Container>
+            <Linka  to='/' >
             <Headers>Token <Span> Trade</Span></Headers>
+            </Linka>
             <Outlet >
             </Outlet>
             <Footer />
@@ -87,6 +84,10 @@ const Layout = () => {
 
 export default Layout
 
+const Linka = styled(Link)`
+    text-decoration: none;
+    `
+    
 
 const Span = styled.span`
     color: #fff;

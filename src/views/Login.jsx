@@ -70,9 +70,9 @@ const Login = () => {
 
     return (
         <Container>
-            <Linka to="/">
+      
                 <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
-            </Linka>
+        
             <Line />
             <Imagen src={img} />
             <FormularioContainer>
@@ -84,14 +84,21 @@ const Login = () => {
                         id='email'
                         onChange={e => handleChangeData(e)}
                         name='email'
+                        placeholder='correo@correo.com'
 
                     />
                     <Label htmlFor="password" >Contraseña</Label>
                     <Input
+
+
                         type="password"
                         onChange={e => handleChangeData(e)}
                         name='password'
                         id='password'
+                        placeholder='*********'
+
+                        minLength='8'
+                        max={20}
                     />
                     <Button
                         type='submit'

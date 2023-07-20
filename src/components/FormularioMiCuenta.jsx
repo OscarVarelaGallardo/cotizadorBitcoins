@@ -1,12 +1,22 @@
 import React from 'react'
 import styled from '@emotion/styled'
-
-const FormularioMiCuenta = ({isUserPremium}) => {
+import { useState,useContext } from 'react'
+import { formateDateForInputDate } from '../helpers/index'
+import  AuthContext  from '../context/AuthProvider'
+const FormularioMiCuenta = ({ isUserPremium }) => {
+  
+    const { user, setUser } = useContext(AuthContext)
+    
 
     const handleChangeData = (e) => {
-        console.log(e.target.value)
+        setUser({
+            ...user,
+            [e.target.name]: e.target.value
+        })
+
     }
 
+    const { nombre, apellidos, fecha_nacimiento, email } = user
   return (
     <ContainerForm>
         <Label>
@@ -17,6 +27,7 @@ const FormularioMiCuenta = ({isUserPremium}) => {
             name='nombre'
             placeholder='Nombre'
             onChange={handleChangeData}
+            value={nombre}
         />
         <Label>
             Apellidos   
@@ -26,6 +37,8 @@ const FormularioMiCuenta = ({isUserPremium}) => {
             name='apellidos'
             placeholder='Apellidos'
             onChange={handleChangeData}
+            
+            value={apellidos}
         />
         <Label>
             Fecha de nacimiento
@@ -35,6 +48,8 @@ const FormularioMiCuenta = ({isUserPremium}) => {
             name='fecha_nacimiento'
             placeholder='Fecha de nacimiento'
             onChange={handleChangeData}
+            value={formateDateForInputDate(fecha_nacimiento)}
+           
         />
         <Label>
             Email
@@ -45,16 +60,10 @@ const FormularioMiCuenta = ({isUserPremium}) => {
             placeholder='Email'
             onChange={handleChangeData}
             disabled
+            value={email}
         />
-        <Label>
-            Contraseña
-        </Label>
-        <Input
-            type='password'
-            name='password'
-            placeholder='Contraseña'
-            onChange={handleChangeData}
-        />
+        
+        
        {
               !isUserPremium? <Button>
                   Guardar
@@ -85,18 +94,17 @@ const Label = styled.label`
     `
 const Input = styled.input`
     width: 90%;
-    background-color: white;
     border: none;
     padding: 0.5rem;
     border-radius: 5px;
-    color: white;
+   
     font-family: 'Inter', sans-serif;
     font-size: 1rem;
     margin-bottom: 0.5rem;
    
     `
 const Button = styled.button`
-    width: 90%;
+    width: 30%;
     background-color: #66A2FE;
     border: none;
     padding: 0.5rem;

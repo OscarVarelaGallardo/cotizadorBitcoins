@@ -2,10 +2,13 @@ import React from 'react'
 import styled from '@emotion/styled'
 import img from '../img/imagen-criptos.png'
 import FormularioRegistro from '../components/FormularioRegistro'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import Error from '../components/Error'
+
+
+
 
 const Register = () => {
     const [error, setError] = useState(false)
@@ -16,6 +19,12 @@ const Register = () => {
         email: '',
         password: '',
     })
+
+    const navigate = useNavigate()
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
+
     const sendRegister = ({ nombre, apellidos, fecha_nacimiento, email, password }) => {
         const URL = 'https://cotiza-bitcoin.onrender.com/login/register';
         fetch(URL, {
@@ -33,9 +42,22 @@ const Register = () => {
             })
         })
             .then(response => response.json())
-            .then(data => console.log(data))
-    }
-  
+            .then(data => {
+             
+                    if(data){
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Usuario creado correctamente',
+                            timer: 1500
+                        })
+                        navigate('/login')
+                    }
+                }
+   
+            )
+}
+
+
 
     const handleChangeData = (e) => {
         setNewUser({

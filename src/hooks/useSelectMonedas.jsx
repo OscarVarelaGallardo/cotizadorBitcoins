@@ -15,14 +15,19 @@ const Select = styled.select`
     padding: 5px;
     border-radius: 5px;
     border: none;
+    margin-bottom: 10px;
+    max-width: 100%;
+
     @media (min-width: 375px) {
-        width: 80%;
+        width: 100%;
         display: block;
         margin: 0 auto;
+        
+    
 
     }
     @media (min-width: 992px) {
-        width: 90%;
+        width: 100%;
         display: block;
         margin: 0 auto;
     }

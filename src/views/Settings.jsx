@@ -2,34 +2,72 @@
 import styled from '@emotion/styled'
 import FormularioMiCuenta from "../components/FormularioMiCuenta"
 import FormPremium from '../components/FormPremium'
-import { Link } from 'react-router-dom'
-import { useState } from 'react'
-
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, useEffect,useContext } from 'react'
+import AuthContext from '../context/AuthProvider'
 const Settings = () => {
-    //modificar el estado de isUserPremium
-    const [isUserPremium, setIsUserPremium] = useState(false)
+
+    const { user, setUser } = useContext(AuthContext)
+
+  useEffect(() => {
+      fetch(` https://cotiza-bitcoin.onrender.com/bituser/getUserData/${user.id}`)
+          .then(response => response.json())
+          .then(data => {
+              setUser({
+                    ...user,
+                    nombre: data.nombre,
+                    apellidos: data.apellidos,
+                    fecha_nacimiento: data.fecha_nacimiento,
+                    email: data.email,
+                    pro: data.pro
+
+                })  
+            })
+    }, [])
+
+        console.log(user)
+  
+
+    const [isUserPremium, setIsUserPremium] = useState(
+        user.pro === "1" ? true : false
+    )
+    const navigate = useNavigate()
+    
 
     return (
         <>
             <Container>
-                
-                <Heading>COTIZA <Span>CRIPTOMONEDAS </Span>
+
+
+                <Heading>COTIZA
+                     <Span>CRIPTOMONEDAS
+                     </Span>
                     AL INSTANTE
                 </Heading>
                 <Line />
-              {
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'start',
+                        width: '100%',
+                        marginLeft: '7rem',
+                    }}
+                >
+                    <Button onClick={() => navigate('/')}>Volver al inicio</Button>
+                </div>
+                {
                     isUserPremium ? (
                         <Heading2>MI CUENTA <Span2>PREMIUM</Span2></Heading2>
                     ) : (
                         <Heading2>MI CUENTA</Heading2>
                     )
 
-              }
-                <FormularioMiCuenta 
+                }
+                <FormularioMiCuenta
                     isUserPremium={isUserPremium}
                 />
 
-              {
+                {
                     !isUserPremium ? (
                         <CardPremium>
                             <TextPremium>¿QUIERES OBTENER <Span>NOTIFICACIONES</Span>  DE LOS CAMBIOS DE TUS MONEDAS?</TextPremium>
@@ -40,13 +78,13 @@ const Settings = () => {
                             </Linka>
                         </CardPremium>
                     ) : (
-                     
-                            <FormPremium/>
 
-                       
-                    ) 
+                        <FormPremium />
 
-              }
+
+                    )
+
+                }
             </Container>
         </>
     )
@@ -96,7 +134,29 @@ const Heading2 = styled.h2`
 
     
 `
+const Button = styled.button`
+    
 
+
+    background-color: #377BAA;
+    justify-content: center;
+    align-items: center;
+
+    height: 2rem;
+    background-color: #F9A826;
+    padding: 5px  20px 5px 20px;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 2rem;
+    &:hover {
+        background-color: #2A5F8A;
+        cursor: pointer;
+    }
+
+`
 const Imagen = styled.img`
     max-width: 400px;
     width: 80%;
