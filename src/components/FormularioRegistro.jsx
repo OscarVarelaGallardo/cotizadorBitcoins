@@ -69,6 +69,8 @@ const FormularioRegistro = ({ handleChangeData, handleSubmit }) => {
                         id='password'
                         type="password"
                         placeholder="Ejemplo: !12%&/()=?¡"
+                        minLength='8'
+                        max={20}
                         onChange={e => handleChangeData(e)}
                     />
                     <Label
@@ -78,6 +80,8 @@ const FormularioRegistro = ({ handleChangeData, handleSubmit }) => {
                         name='repetPassword'
                         id='repetPassword'
                         type="password"
+                        minLength='8'
+                        max={20}
                         onChange={e => handleChangeData(e)}
                         placeholder="Ejemplo: !12%&/()=?¡" />
                     <div>
