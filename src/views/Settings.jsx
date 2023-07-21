@@ -10,23 +10,16 @@ const Settings = () => {
     const { user, setUser } = useContext(AuthContext)
 
   useEffect(() => {
-      fetch(` https://cotiza-bitcoin.onrender.com/bituser/getUserData/${user.id}`)
-          .then(response => response.json())
-          .then(data => {
-              setUser({
-                    ...user,
-                    nombre: data.nombre,
-                    apellidos: data.apellidos,
-                    fecha_nacimiento: data.fecha_nacimiento,
-                    email: data.email,
-                    pro: data.pro
-
-                })  
-            })
+      
     }, [])
 
-        console.log(user)
-  
+
+    const updateUser = ({ nombre, apellidos, fecha_nacimiento, email }) => {
+        e.preventDefault()
+        console.log(nombre, apellidos, fecha_nacimiento, email)
+
+
+    }
 
     const [isUserPremium, setIsUserPremium] = useState(
         user.pro === "1" ? true : false
@@ -65,6 +58,7 @@ const Settings = () => {
                 }
                 <FormularioMiCuenta
                     isUserPremium={isUserPremium}
+                    updateUser={updateUser}
                 />
 
                 {

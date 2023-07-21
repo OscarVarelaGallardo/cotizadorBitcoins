@@ -1,21 +1,19 @@
 import React, { useContext } from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Footer from './Footer'
 import AuthContext from '../context/AuthProvider'
-import { Link } from 'react-router-dom'
+
 
 const Layout = () => {
     const navigate = useNavigate()
-    const { setIsAuth, isAuth } = useContext(AuthContext)
+    const {isAuth, setIsAuth } = useContext(AuthContext)
 
     return (
         <div>
             <Container>
                
-
                 {
-
                     window.location.pathname === '/login' || isAuth ? null
                         :
                         <Button

@@ -22,7 +22,7 @@ const Select = styled.select`
         width: 100%;
         display: block;
         margin: 0 auto;
-        
+        max-width: 1400px;
     
 
     }

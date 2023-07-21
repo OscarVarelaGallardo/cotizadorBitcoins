@@ -5,8 +5,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import sendData from '../helpers/index.js'
 import AuthContext from '../context/AuthProvider'
+import { postUserData } from '../helpers/index'
 
-const URL = 'https://cotiza-bitcoin.onrender.com/login';
 
 const Login = () => {
 
@@ -16,9 +16,9 @@ const Login = () => {
     })
     const navigate = useNavigate()
 
-    const {setIsAuth, setUser } = useContext(AuthContext)
+    const { setIsAuth, setUser } = useContext(AuthContext)
 
-  
+
     const handleSubmit = (e) => {
 
         e.preventDefault()
@@ -32,19 +32,25 @@ const Login = () => {
             })
             return
         }
-        sendData(URL, dataUser)
+        sendData(dataUser)
             .then((data) => {
-                if(data){
+                if (data) {
                     setIsAuth(true)
-                    setUser(data)
+
+                    postUserData(dataUser)
+                        .then((data) => {
+                            setUser(data)
+                        })
+
                     Swal.fire({
                         icon: 'success',
                         title: 'Bienvenido',
                         timer: 1500
                     })
+
                     navigate('/')
                 }
-                else{
+                else {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
@@ -70,9 +76,9 @@ const Login = () => {
 
     return (
         <Container>
-      
-                <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
-        
+
+            <H1>COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
+
             <Line />
             <Imagen src={img} />
             <FormularioContainer>

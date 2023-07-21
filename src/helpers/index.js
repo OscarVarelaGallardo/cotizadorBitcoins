@@ -1,6 +1,7 @@
-const sendData = async (URL, { password, email }) => {
-
+const sendData = async ( { password, email }) => {
+ 
     try {
+        const URL = 'https://cotiza-bitcoin.onrender.com/login';
         const response = await fetch(URL, {
             method: 'POST',
             headers: {
@@ -20,6 +21,89 @@ const sendData = async (URL, { password, email }) => {
     }
 }
 
+const postUserData = async ({email}) => {
+  
+    try {
+        const URL = 'https://cotiza-bitcoin.onrender.com/bituser/getUserEmail';
+        const response = await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email })
+        })
+
+        if (response.ok) {
+            const data = await response.json()
+            
+            return data
+        }
+
+        throw new Error('Request failed!')
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const updateUserData = async (userEdit, id ) => {
+        const { nombre, apellidos, password } = userEdit
+        console.log(userEdit)
+        
+        if(userEdit.password ){
+            try {
+                const URL= `https://cotiza-bitcoin.onrender.com/bituser/updateUserData/${id}`;
+                console.log("enviando password")
+                const response = await fetch(URL,{
+                    method: 'PUT',
+                    headers:{
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        password
+                     })
+                     
+                })
+                if (response.ok) {
+                    const data = await response.json()
+                    console.log(data)
+                    return data
+                }
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+
+
+
+    try {
+        const URL = `https://cotiza-bitcoin.onrender.com/bituser/updateUserData/${id}`;
+        const response = await fetch(URL,{
+            method: 'PUT',
+            headers:{
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nombre,
+                apellidos,
+                password,
+             })
+
+
+        })
+        if (response.ok) {
+            const data = await response.json()
+            console.log(data)
+            return data
+        }
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
 const formateDateForInputDate = (date) => {
     const dateObj = new Date(date)
     const year = dateObj.getFullYear()
@@ -29,6 +113,7 @@ const formateDateForInputDate = (date) => {
     return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`
 }
 
-export { formateDateForInputDate }
+export { formateDateForInputDate, postUserData, updateUserData }
 
 export default sendData
+

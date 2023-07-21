@@ -4,9 +4,6 @@ import styled from '@emotion/styled'
 
 const FormularioRegistro = ({ handleChangeData, handleSubmit }) => {
    
-
-
-
     return (
         <>
 

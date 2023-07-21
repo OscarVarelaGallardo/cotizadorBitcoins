@@ -4,10 +4,13 @@ const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
     const [isAuth, setIsAuth] = useState(false)
+    
     const [user, setUser] = useState({
+        'id': '',
         'nombre': '',
         'apellidos': '',
-        'id': '',
+        'fecha_nacimiento': '',
+        'email': '',
         'pro':'',
         'token': ''
 
