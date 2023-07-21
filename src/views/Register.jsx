@@ -6,12 +6,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import Swal from 'sweetalert2'
 import Error from '../components/Error'
-
+import Spinner from '../components/Spinner'
+import { sendRegister } from '../helpers/index'
 
 
 
 const Register = () => {
     const [error, setError] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     const [newUser, setNewUser] = useState({
         nombre: '',
         apellidos: '',
@@ -21,41 +23,10 @@ const Register = () => {
     })
 
     const navigate = useNavigate()
+
     useEffect(() => {
         window.scrollTo(0, 0)
     }, [])
-
-    const sendRegister = ({ nombre, apellidos, fecha_nacimiento, email, password }) => {
-        const URL = 'https://cotiza-bitcoin.onrender.com/login/register';
-        fetch(URL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nombre,
-                apellidos,
-                fecha_nacimiento,
-                email,
-                password,
-
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-             
-                    if(data){
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Usuario creado correctamente',
-                            timer: 1500
-                        })
-                        navigate('/login')
-                    }
-                }
-   
-            )
-}
 
 
 
@@ -64,19 +35,22 @@ const Register = () => {
             ...newUser,
             [e.target.name]: e.target.value
         })
-       
+
     }
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        setIsLoading(true)
         setNewUser({
             ...newUser,
             [e.target.name]: e.target.value
         })
+
         const { nombre, apellidos, fecha_nacimiento, email, password, repetPassword } = newUser
         if (nombre.trim() === '' || fecha_nacimiento.trim() === '' || email.trim() === '' || password.trim() === '' || apellidos.trim() === '') {
             setError(true)
+
             return
         }
 
@@ -87,11 +61,40 @@ const Register = () => {
                 title: 'Oops...',
                 text: 'Las contraseñas no coinciden',
             })
+            setIsLoading(false) 
             return
         }
         setError(false)
+      
         sendRegister(newUser)
+            .then(res => {
+                setIsLoading(false)
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registro exitoso',
+                    text: 'Bienvenido a CriptoMonedas al instante',
+                })
+                navigate('/login')
+            }
+            )
+            .catch(err => {
+                setIsLoading(false)
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'El email ya está registrado',
+                })
+            }
+            )
+
+            
+
+
+            
+            
+          
     }
+
 
 
 
@@ -100,19 +103,26 @@ const Register = () => {
             <Linka to="/">
                 <H1  >COTIZA <Span>CRIPTOMONEDAS </Span>AL INSTANTE </H1>
             </Linka>
-            <Line />
-            <TituloFormulario>REGISTRATE</TituloFormulario>
+            <Line />{
+                isLoading ? <Spinner
+                    text="Enviando registro espere unos momentos..."
+                      
+                    /> :
+                    <>
+                        <TituloFormulario>REGISTRATE</TituloFormulario>
 
-            {error ? <Error>Todos los campos son obligatorios</Error> : null}
-            <ContainerFormulario >
-                <FormularioRegistro
-                
-                    handleSubmit={handleSubmit}
-                    handleChangeData={handleChangeData}
-                    setError={setError}
-                />
-                <Imagen src={img} alt="imagen-bitcoin" /> 
-            </ContainerFormulario>
+                        {error ? <Error>Todos los campos son obligatorios</Error> : null}
+                        <ContainerFormulario >
+                            <FormularioRegistro
+
+                                handleSubmit={handleSubmit}
+                                handleChangeData={handleChangeData}
+                                setError={setError}
+                            />
+                            <Imagen src={img} alt="imagen-bitcoin" />
+                        </ContainerFormulario>
+                    </>
+            }
         </Container>
     )
 }

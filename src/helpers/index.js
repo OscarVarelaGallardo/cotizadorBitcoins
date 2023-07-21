@@ -115,7 +115,37 @@ const formateDateForInputDate = (date) => {
     return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`
 }
 
-export { formateDateForInputDate, postUserData, updateUserData }
+
+const sendRegister = async ({ nombre, apellidos, fecha_nacimiento, email, password }) => {
+    try {
+        const URL = 'https://cotiza-bitcoin.onrender.com/login/register';
+        await fetch(URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre,
+                apellidos,
+                fecha_nacimiento,
+                email,
+                password,
+
+            })
+
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))
+        
+    } catch (error) {
+        console.log(error)
+    }
+
+  
+}
+
+
+export { formateDateForInputDate, postUserData, updateUserData, sendRegister }
 
 export default sendData
 

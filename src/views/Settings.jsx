@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import FormPremium from '../components/FormPremium'
 import FormularioMiCuenta from "../components/FormularioMiCuenta"
 import AuthContext from '../context/AuthProvider'
+
 import {
     Button,
     CardPremium,
@@ -33,7 +34,7 @@ const Settings = () => {
     return (
         <>
             <Container>
-
+           
 
                 <Heading>COTIZA <Span>CRIPTOMONEDAS </Span> AL INSTANTE </Heading>
                 <Line />

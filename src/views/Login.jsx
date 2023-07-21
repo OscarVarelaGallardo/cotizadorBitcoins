@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import sendData from '../helpers/index.js'
 import AuthContext from '../context/AuthProvider'
 import { postUserData } from '../helpers/index'
-
+import Spinner from '../components/Spinner'
 
 const Login = () => {
 
@@ -15,12 +15,13 @@ const Login = () => {
         'password': ''
     })
     const navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(false)
 
     const { setIsAuth, setUser } = useContext(AuthContext)
 
 
     const handleSubmit = (e) => {
-
+        setIsLoading(true)
         e.preventDefault()
         const { email, password } = dataUser
 
@@ -33,13 +34,16 @@ const Login = () => {
             return
         }
         sendData(dataUser)
+
             .then((data) => {
+
                 if (data) {
                     setIsAuth(true)
-
                     postUserData(dataUser)
                         .then((data) => {
                             setUser(data)
+                            setIsLoading(false)
+                            
                         })
 
                     Swal.fire({
@@ -56,6 +60,7 @@ const Login = () => {
                         title: 'Oops...',
                         text: 'Usuario o contraseña incorrectos',
                     })
+                    setIsLoading(false)
                 }
             }
             )
@@ -81,6 +86,12 @@ const Login = () => {
 
             <Line />
             <Imagen src={img} />
+            {
+                isLoading ? <Spinner 
+                    text='Iniciando sesión ...'
+                /> : 
+
+            
             <FormularioContainer>
                 <Form
                     onSubmit={handleSubmit}
@@ -114,7 +125,7 @@ const Login = () => {
                     </P>
                 </Form>
             </FormularioContainer>
-
+}
 
         </Container>
 

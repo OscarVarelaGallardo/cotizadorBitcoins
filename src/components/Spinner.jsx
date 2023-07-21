@@ -1,9 +1,25 @@
 import '../styles/Spinner.css'
 
-const Spinner = () => {
+const Spinner = ({
+    text
+}) => {
     return (
         <div className="sk-circle">
-            <div className="sk-circle1 sk-child"></div>
+         
+            <div className="sk-circle1 sk-child">
+
+                <p
+                    style={{
+                        color: 'white',
+                        fontSize: '20px',
+                        textAlign: 'center',
+                        justifyContent: 'center',
+                        display: 'flex',
+                        alignItems: 'center',
+                        marginTop: '40px',
+                    }}
+                >  {text}</p>
+            </div>
             <div className="sk-circle2 sk-child"></div>
             <div className="sk-circle3 sk-child"></div>
             <div className="sk-circle4 sk-child"></div>

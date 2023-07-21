@@ -11,7 +11,7 @@ import imgUser1 from '../img/fotoUser1.jpeg'
 import imgUser2 from '../img/fotoUser2.jpeg'
 import imgUser3 from '../img/fotoUser3.jpeg'
 import imgUser4 from '../img/fotoUser4.jpg'
-
+import Notification from '../components/Notification'
 import {
   Container_Cards,
   Container_Planes,
@@ -56,7 +56,11 @@ const Index = () => {
 
   return (
     <>
+      <Notification
+        children='¡Bienvenido a CriptoCotiza!'
+      />
       <Contenedor>
+        
         <Imagen
           src={ImagenCripto}
           alt="imagenes criptomonedas"
