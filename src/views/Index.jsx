@@ -11,6 +11,7 @@ import imgUser1 from '../img/fotoUser1.jpeg'
 import imgUser2 from '../img/fotoUser2.jpeg'
 import imgUser3 from '../img/fotoUser3.jpeg'
 import imgUser4 from '../img/fotoUser4.jpg'
+
 import {
   Container_Cards,
   Container_Planes,
@@ -121,31 +122,24 @@ const Index = () => {
       <Container_Testimonios>
         <CardTestimonial 
           img={imgUser1}
-          testimonio='
-            Incremente mis ganancias en un 30% en tan solo 2 meses.
-          '
+          testimonio='Incremente mis ganancias en un 30% en tan solo 2 meses. '
           nombre='Juan Perez'
 
         />
         <CardTestimonial 
           img={imgUser2}
-          testimonio='Excelente servicio, me encanta disfruto 
-          mucho de la aplicación.'
+          testimonio='Excelente servicio, me encanta disfruto mucho de la aplicación.'
         
           nombre='Maria Lopez'
         />
         <CardTestimonial
           img={imgUser3}
-          testimonio='
-          Adoro esta aplicación, me ha ayudado a tomar las mejores decisiones.
-          '
+          testimonio='Adoro esta aplicación, me ha ayudado a tomar las mejores decisiones.'
           nombre='Anna Smith'
         />
         <CardTestimonial 
           img={imgUser4}
-          testimonio='
-          Tengo las notificaciones siempre activas, me encanta estar informado en todo momento.
-          '
+          testimonio='Tengo las notificaciones siempre activas, me encanta estar informado en todo momento.'
           nombre='Pedro Rodriguez'
         />
 

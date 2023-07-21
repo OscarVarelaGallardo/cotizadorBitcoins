@@ -103,7 +103,7 @@ const FormPremium = () => {
                   type="submit"
                   onClick={handleClick}
               >
-                  Guardar cambios
+                    GUARDAR MIS PREFERENCIAS
               </Button>
             
         </Container>
@@ -134,6 +134,7 @@ const Container = styled.div`
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    margin-top: 2rem;
     
 
 
@@ -156,6 +157,7 @@ const Form = styled.form`
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    margin-top: 1rem;
     width: 100%;
    
    @media (max-width: 768px) {
@@ -195,7 +197,7 @@ const Button = styled.button`
     flex-direction: column;
     align-items: center;
     width: 40%;
-    padding: 0.5rem;
+    padding:1rem;
     border-radius: 0.5rem;
     border: 1px solid #e1e1e1;
     font-family: 'Lato', sans-serif;

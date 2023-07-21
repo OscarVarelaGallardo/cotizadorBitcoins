@@ -46,12 +46,13 @@ const postUserData = async ({email}) => {
 }
 
 const updateUserData = async (userEdit, id ) => {
-        const { nombre, apellidos, password } = userEdit
+       
         console.log(userEdit)
         
         if(userEdit.password ){
             try {
-                const URL= `https://cotiza-bitcoin.onrender.com/bituser/updateUserData/${id}`;
+                const { oldPassword, password } = userEdit
+                const URL= `https://cotiza-bitcoin.onrender.com/login/updatePass/${id}`;
                 console.log("enviando password")
                 const response = await fetch(URL,{
                     method: 'PUT',
@@ -59,7 +60,8 @@ const updateUserData = async (userEdit, id ) => {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        password
+                        "contrasenaAntigua": oldPassword,
+                        "contrasenaNueva": password, 
                      })
                      
                 })
@@ -87,7 +89,6 @@ const updateUserData = async (userEdit, id ) => {
             body: JSON.stringify({
                 nombre,
                 apellidos,
-                password,
              })
 
 
