@@ -80,6 +80,7 @@ const updateUserData = async (userEdit, id ) => {
 
 
     try {
+        const { nombre, apellidos } = userEdit
         const URL = `https://cotiza-bitcoin.onrender.com/bituser/updateUserData/${id}`;
         const response = await fetch(URL,{
             method: 'PUT',
@@ -95,7 +96,7 @@ const updateUserData = async (userEdit, id ) => {
         })
         if (response.ok) {
             const data = await response.json()
-            console.log(data)
+            console.log("enviando datos")
             return data
         }
         

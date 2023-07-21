@@ -35,11 +35,7 @@ const Settings = () => {
             <Container>
 
 
-                <Heading>COTIZA
-                     <Span>CRIPTOMONEDAS
-                     </Span>
-                    AL INSTANTE
-                </Heading>
+                <Heading>COTIZA <Span>CRIPTOMONEDAS </Span> AL INSTANTE </Heading>
                 <Line />
                 <div
                     style={{

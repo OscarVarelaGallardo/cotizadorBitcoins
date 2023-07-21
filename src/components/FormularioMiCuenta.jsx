@@ -12,7 +12,7 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
     const { user, setUser } = useContext(AuthContext)
     const [userEdit, setUsetEdit ] = useState({})
     const [error , setError] = useState(false)
-
+    const { nombre, apellidos, fecha_nacimiento, email, id } = user
 
     const navigate = useNavigate()
     const handleChangeData = (e) => {
@@ -31,6 +31,8 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+
+
         if (userEdit.password === userEdit.repetir_password) {
             updateUserData(userEdit, id)
             
@@ -39,22 +41,33 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
                         Swal.fire({
                             icon: 'success',
                             title: 'Correcto',
-                            text: 'Datos actualizados correctamente',
+                            text: 'Contraseña actualizada correctamente',
                             timer: 1500
                         })
                     }
-                
-
             setError(false)
                     navigate('/')
         })
-        } else {
 
-            setError(true)
-        }
+        } 
+        updateUserData(userEdit, id)
+            .then(data => {
+                if(data){
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Correcto',
+                        text: 'Datos actualizados correctamente',
+                        timer: 1500
+                    })
+                }
+                setError(false)
+                navigate('/')
+            }
+            )
+            
     }
 
-    const { nombre, apellidos, fecha_nacimiento, email,id } = user
+
       
 
     return (
