@@ -68,10 +68,8 @@ const Index = () => {
           <Formulario
             setMonedas={setMonedas}
           />
-
           {cargando && <Spinner />}
           {resultado.PRICE && <Resultado resultado={resultado} />}
-
         </div>
 
       </Contenedor>
