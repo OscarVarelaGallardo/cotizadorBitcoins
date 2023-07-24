@@ -85,13 +85,35 @@ const Contenedor = styled.div`
     max-width: 320px;
       padding: 0 2rem;
   }
+  
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+    max-width: 50rem;
+  }
 
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 2rem;
+      max-width: 60rem;
+  }
+  @media (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+      max-width: 70rem;
+  }
+  @media (min-width: 1600px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2rem;
+
       max-width: 100rem;
   }
+  
+
   
 `
 const Imagen = styled.img`
@@ -140,7 +162,6 @@ const ContainerCards = styled.div`
   grid-template-columns: repeat(1, 1fr);
   column-gap: 2rem;
   max-width: 320px;
-  padding: 0 2rem;
   margin: 0 auto;
   margin-bottom: 10rem;
   margin-top: 5rem;
@@ -151,16 +172,23 @@ const ContainerCards = styled.div`
     padding: 0 2rem;
     margin: 0 auto;
     margin-top: 5rem;
-   
+    
+    @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5rem;
+   max-width: 50rem;
+
+    }
      
      
   }
-
+ 
   @media (min-width: 992px) {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     column-gap: 4rem;
-      max-width: 100rem;
+    max-width: 1200px;
   }
 `
 const ContainerPlanes = styled.div`

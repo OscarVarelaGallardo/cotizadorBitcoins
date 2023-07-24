@@ -53,7 +53,6 @@ const Index = () => {
     <>
       <Notification title='¡Bienvenido!'/>
       <Contenedor>
-
         <Imagen
           src={ImagenCripto}
           alt="imagenes criptomonedas"

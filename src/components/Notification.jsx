@@ -1,7 +1,7 @@
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-const Notification = ({ children }) => {
-  const notify = () => toast(children)
+const Notification = (children) => {
+  const notify = () => toast(children.title)
   return (
       <div>
           <button onClick={notify}>Notify!</button>
