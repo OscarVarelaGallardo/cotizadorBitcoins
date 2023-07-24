@@ -115,7 +115,7 @@ const Headers = styled.div`
 
 const Container = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin: 10px 0 10px 0;
     @media (min-width: 375px) {
         margin: 20px 0 20px 0;

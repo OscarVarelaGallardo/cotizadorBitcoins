@@ -12,8 +12,10 @@ const Card = ({ title, description }) => {
           color: '#FFF',
           width: '100%',
           borderRadius: '10px ',
-          padding: '20px',
-          border: '1px solid #66A2FE'
+          padding: '10px',
+          border: '1px solid #66A2FE',
+          boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
+          margin: '10px 0'
 
         }} >
             <h2
