@@ -115,6 +115,8 @@ const Button = styled.button`
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
     &:hover {
         background-color: #2A5F8A;
         cursor: pointer;

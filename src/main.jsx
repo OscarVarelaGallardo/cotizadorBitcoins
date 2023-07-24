@@ -13,7 +13,6 @@ import Error from './views/Error'
 import { Blog } from './views/Blog'
 import { AuthProvider } from './context/AuthProvider'
 
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -21,21 +20,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Index />,
+        element: <Index />
       },
       {
         path: '/register',
-        element: <Register />,
+        element: <Register />
       },
       {
         path: '/login',
-        element: <Login />,
+        element: <Login />
       },
       {
         path: '/settings',
         element: <Settings />
-      }
-      ,
+      },
       {
         path: '/planes-premium',
         element: <PlanesPremium />
@@ -50,15 +48,15 @@ const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <Error />,
+        element: <Error />
       }
 
-
-    ],
-  },
+    ]
+  }
 
 ])
 
+// eslint-disable-next-line react/no-deprecated
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import Card from '../components/Card'
 import CardPremium from '../components/CardPremium'
 import CardTestimonial from '../components/CardTestimonial'
 import Formulario from '../components/Formulario'
@@ -12,8 +11,9 @@ import imgUser2 from '../img/fotoUser2.jpeg'
 import imgUser3 from '../img/fotoUser3.jpeg'
 import imgUser4 from '../img/fotoUser4.jpg'
 import Notification from '../components/Notification'
+import ContainerCard from '../components/ContainerCard'
+
 import {
-  ContainerCards,
   ContainerPlanes,
   ContainerTestimonios,
   Contenedor,
@@ -76,26 +76,7 @@ const Index = () => {
 
       </Contenedor>
 
-      <ContainerCards >
-        <Card
-          title="Tus datos están seguros"
-          description="Tus datos están protegidos con los más altos estándares de seguridad."
-        />
-        <Card
-          title="Mantente siempre actualizado"
-          description="Notificaciones siempre que el precio de tus criptomonedas cambie."
-        />
-
-        <Card
-          title="Toma las mejores decisiones"
-          description="
-          Toma las mejores decisiones con la información más actualizada."
-        />
-        <Card
-          title="El mejor sitio para cotizar "
-          description="Cotiza tus criptomonedas al instante con la mejor información."
-        />
-      </ContainerCards>
+     <ContainerCard/>
 
       <ContainerPlanes>
         <CardPremium
