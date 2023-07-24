@@ -28,13 +28,14 @@ const Precio = styled.p`
     }
 `
 
-const Resultado = ({resultado}) => {
-    const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE} = resultado
-    return (
+const Resultado = ({ resultado }) => {
+  const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, IMAGEURL, LASTUPDATE } = resultado
+
+  return (
         <Contenedor>
-            <Imagen 
-                src={`https://cryptocompare.com/${IMAGEURL}`} 
-                alt="imagen cripto" 
+            <Imagen
+                src={`https://cryptocompare.com/${IMAGEURL}`}
+                alt="imagen cripto"
             />
             <div>
                 <Precio>El Precio es de: <span>{PRICE}</span></Precio>
@@ -44,7 +45,7 @@ const Resultado = ({resultado}) => {
                 <Texto>Última Actualización: <span>{LASTUPDATE}</span></Texto>
             </div>
         </Contenedor>
-    )
+  )
 }
 
 export default Resultado

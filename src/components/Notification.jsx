@@ -1,8 +1,7 @@
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-const Notification = ({children}) => {
-
-   const notify = () => toast(children);
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+const Notification = ({ children }) => {
+  const notify = () => toast(children)
   return (
       <div>
           <button onClick={notify}>Notify!</button>
@@ -17,13 +16,15 @@ const Notification = ({children}) => {
               draggable
               pauseOnHover
               theme="light"
-              style={{ width: '50%', height: '100%',
-               
+              style={{
+                width: '50%',
+                height: '100%',
+
                 fontSize: '20px',
                 textAlign: 'center',
                 borderRadius: '10px',
-                padding: '10px',
-            }}
+                padding: '10px'
+              }}
           />
       </div>
   )

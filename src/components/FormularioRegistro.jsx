@@ -1,15 +1,13 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-
 const FormularioRegistro = ({ handleChangeData, handleSubmit }) => {
-   
-    return (
+  return (
         <>
 
             <Form
                 onSubmit={handleSubmit} >
-               
+
                 <div>
                     <Label
                         htmlFor="nombre"
@@ -91,12 +89,10 @@ const FormularioRegistro = ({ handleChangeData, handleSubmit }) => {
 
             </Form>
         </>
-    )
+  )
 }
 
 export default FormularioRegistro
-
-
 
 const Form = styled.form`
     

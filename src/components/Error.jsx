@@ -1,13 +1,11 @@
 import styled from '@emotion/styled'
 
-
-
-const Error = ({children}) => {
-    return (
+const Error = ({ children }) => {
+  return (
         <Texto>
             {children}
         </Texto>
-    )
+  )
 }
 
 export default Error

@@ -4,35 +4,34 @@ import styled from '@emotion/styled'
 import Footer from './Footer'
 import AuthContext from '../context/AuthProvider'
 
-
 const Layout = () => {
-    const navigate = useNavigate()
-    const {isAuth, setIsAuth } = useContext(AuthContext)
+  const navigate = useNavigate()
+  const { isAuth, setIsAuth } = useContext(AuthContext)
 
-    return (
+  return (
         <div>
             <Container>
-               
+
                 {
-                    window.location.pathname === '/login' || isAuth ? null
-                        :
-                        <Button
+                    window.location.pathname === '/login' || isAuth
+                      ? null
+                      : <Button
                             type="button"
                             onClick={() => {
-                                navigate('/login')
+                              navigate('/login')
                             }
                             }
                         >
                             Iniciar Sesión
 
                         </Button>
-                }  
-                     {window.location.pathname === '/register' || isAuth ? null :
-                    <Button
+                }
+                     {window.location.pathname === '/register' || isAuth
+                       ? null
+                       : <Button
                         type="button"
                         onClick={() => {
-
-                            navigate('/register')
+                          navigate('/register')
                         }
                         }
                     >
@@ -40,15 +39,13 @@ const Layout = () => {
                     </Button>
 
                 }
-                {window.location.pathname === '/settings' || !isAuth ?
-                    null
-                    :
-                    <>                    
+                {window.location.pathname === '/settings' || !isAuth
+                  ? null
+                  : <>
                     <Button
                         type="button"
                         onClick={() => {
-
-                            navigate('/settings')
+                          navigate('/settings')
                         }
                         }
                     >
@@ -57,27 +54,24 @@ const Layout = () => {
                         <Button
                             type="button"
                             onClick={() => {
-                                setIsAuth(false)
-                                navigate('/')
+                              setIsAuth(false)
+                              navigate('/')
                             }}>
                             Cerrar Sesión
                         </Button>
                     </>
 
                 }
-              
-
-
 
             </Container>
-            <Linka  to='/' >
+            <Linka to='/' >
             <Headers>Token <Span> Trade</Span></Headers>
             </Linka>
             <Outlet >
             </Outlet>
             <Footer />
         </div>
-    )
+  )
 }
 
 export default Layout
@@ -85,7 +79,6 @@ export default Layout
 const Linka = styled(Link)`
     text-decoration: none;
     `
-    
 
 const Span = styled.span`
     color: #fff;
@@ -132,4 +125,3 @@ const Container = styled.div`
       justify-content: flex-end;
     }
 `
-

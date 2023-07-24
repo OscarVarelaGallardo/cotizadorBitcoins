@@ -1,9 +1,17 @@
-import React from 'react'
+import {createContext, useState} from 'react'
 
-const PremiumProvider = () => {
+const ConfigUserContext = createContext()
+
+const PremiumProvider = ({}) => {
   return (
-    <div>PremiumProvider</div>
+    <div>ConfigUserProvider</div>
+    
+
   )
+}
+
+export {
+  PremiumProvider
 }
 
 export default PremiumProvider

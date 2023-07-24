@@ -1,22 +1,20 @@
 import '../styles/Spinner.css'
 
 const Spinner = ({
-    text
+  text
 }) => {
-    return (
+  return (
         <div className="sk-circle">
-         
             <div className="sk-circle1 sk-child">
-
                 <p
                     style={{
-                        color: 'white',
-                        fontSize: '20px',
-                        textAlign: 'center',
-                        justifyContent: 'center',
-                        display: 'flex',
-                        alignItems: 'center',
-                        marginTop: '40px',
+                      color: 'white',
+                      fontSize: '20px',
+                      textAlign: 'center',
+                      justifyContent: 'center',
+                      display: 'flex',
+                      alignItems: 'center',
+                      marginTop: '40px'
                     }}
                 >  {text}</p>
             </div>
@@ -32,7 +30,7 @@ const Spinner = ({
             <div className="sk-circle11 sk-child"></div>
             <div className="sk-circle12 sk-child"></div>
         </div>
-    )
+  )
 }
 
 export default Spinner

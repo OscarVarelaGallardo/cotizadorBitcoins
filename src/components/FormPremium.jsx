@@ -1,44 +1,79 @@
 import styled from '@emotion/styled'
-import Swal from 'sweetalert2'
-import {useNavigate} from 'react-router-dom'
+import { useState, useContext, useEffect } from 'react'
+import AuthContext from '../context/AuthProvider'
+
 const FormPremium = () => {
-    const navigate = useNavigate()
-    const handleClick = (e) => {
-        e.preventDefault()
-        Swal.fire({
-            title: '¡Cambios guardados!',
-            text: 'Tus cambios se han guardado con éxito',
-            icon: 'success',
-            confirmButtonText: 'Aceptar'
-            })
-        navigate('/')
+  const [dataPremiumuser, setDataPremiumUser] = useState({})
+
+  const { user } = useContext(AuthContext)
+  const { email } = user
+
+  useEffect(() => {
+
+  }, [])
+
+  const sendConfig = async (dataUser) => {
+    try {
+      const URL = 'https://cotiza-bitcoin.onrender.com/bitpro/updateUserProMail'
+      const response = await fetch(URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dataUser)
+      })
+      const data = await response.json()
+      console.log(data)
+    } catch (error) {
+      console.log(error)
     }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('submit')
+    const dataUser = Object.assign(dataPremiumuser, { email })
+    console.log(dataUser)
+    sendConfig(dataUser)
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    console.log('click')
+    setDataPremiumUser({
+      ...dataPremiumuser,
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
         <>
-        <Container>
-            <Heading>CONFIGURA TUS AJUSTES <Span> PREMIUM</Span> </Heading>
-            
-            <Form>
-                <Label>
-                    RECIBIR NOTIFICACIONES
-                    <Select
-                        name="frecuencia"
+            <Container>
+                <Heading>CONFIGURA TUS AJUSTES <Span> PREMIUM</Span> </Heading>
 
-                    >
-                        <option value="nunca">Nunca</option>
-                        <option value="diario">Diario</option>
-                        <option value="semanal">Semanal</option>
-                        <option value="mensual">Mensual</option>
-
-                    </Select>
-
-                </Label>
-                <Label>
-                    MONEDAS
-                    <Select
-                        name="monedas"
+                <Form>
+                    <Label>
+                        RECIBIR NOTIFICACIONES
+                        <Select
+                            name="frecuencia"
+                            onChange={handleClick}
                         >
+                            <option selected disabled hidden value="">Selecciona una opción</option>
+                            <option value="nunca">Nunca</option>
+                            <option value="diario">Diario</option>
+                            <option value="semanal">Semanal</option>
+                            <option value="mensual">Mensual</option>
+
+                        </Select>
+
+                    </Label>
+                    <Label>
+                        MONEDAS
+                        <Select
+                            name="monedas"
+                            onChange={handleClick}
+                        >
+                            <option selected disabled hidden value="">Selecciona una opción</option>
                             <option value="bitcoin">Bitcoin</option>
                             <option value="ethereum">Ethereum</option>
                             <option value="litecoin">Litecoin</option>
@@ -49,70 +84,72 @@ const FormPremium = () => {
                             <option value="ripple">Ripple</option>
 
                         </Select>
-                </Label>
-                <Label>
-                    MIS MONEDAS FAVORITAS
-                    <Select
-                        name="monedasFavoritas"
-                    >
-                        <option value="MXN">MXN</option>
-                        <option value="USD">USD</option>
-                        <option value="CAN">CAN</option>
-                        <option value="EUR">EUR</option>
-                        <option value="GBP">GBP</option>
-                        <option value="JPY">JPY</option>
-                        <option value="CHF">CHF</option>
-                        <option value="AUD">AUD</option>
-                        <option value="NZD">NZD</option>
-                        <option value="CNY">CNY</option>
-                        <option value="HKD">HKD</option>
-                        <option value="SEK">SEK</option>
+                    </Label>
+                    <Label>
+                        MIS MONEDAS FAVORITAS
+                        <Select
+                            name="monedasFavoritas"
+                            onChange={handleClick}
+                        >
+                            <option selected disabled hidden value="">Selecciona una opción</option>
+                            <option value="MXN">MXN</option>
+                            <option value="USD">USD</option>
+                            <option value="CAN">CAN</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="JPY">JPY</option>
+                            <option value="CHF">CHF</option>
+                            <option value="AUD">AUD</option>
+                            <option value="NZD">NZD</option>
+                            <option value="CNY">CNY</option>
+                            <option value="HKD">HKD</option>
+                            <option value="SEK">SEK</option>
                         </Select>
-                </Label>
-                <Label>
-                    ALERTAS
-                    <Select
-                        name="alertas"
-                    >
-                        <option value="precio">Precio</option>
-                        <option value="porcentaje">Porcentaje</option>
-                    </Select>
-                </Label>
-                <Label>
-                    TIPO DE ALERTA
-                    <Select
-                        name="tipoAlerta"
-                    >
-                        <option value="mayor">Mayor</option>
-                        <option value="igual">Medio</option>
-                        <option value="menor">Menor</option>
-                    </Select>
-                </Label>
-                <Label>
-                   CANTIDAD DIFERENTE A 
-                    <Input type="text" name="name"
-                        placeholder="Ejem: 1000"
-                    />
-                </Label>
-                
-         
-
-
-            </Form>
-              <Button
-                  type="submit"
-                  onClick={handleClick}
-              >
+                    </Label>
+                    <Label>
+                        ALERTAS
+                        <Select
+                            name="alertas"
+                            onChange={handleClick}
+                        >
+                            <option selected disabled hidden value="">Selecciona una opción</option>
+                            <option value="precio">Precio</option>
+                            <option value="porcentaje">Porcentaje</option>
+                        </Select>
+                    </Label>
+                    <Label>
+                        TIPO DE ALERTA
+                        <Select
+                            name="tipoAlerta"
+                            onChange={handleClick}
+                        >
+                            <option selected disabled hidden value="">Selecciona una opción</option>
+                            <option value="mayor">Mayor</option>
+                            <option value="igual">Medio</option>
+                            <option value="menor">Menor</option>
+                        </Select>
+                    </Label>
+                    <Label>
+                        CANTIDAD DIFERENTE A
+                        <Input type="text" name="name"
+                            onChange={handleClick}
+                            placeholder="Ejem: 1000"
+                        />
+                    </Label>
+                </Form>
+                <Button
+                    type="submit"
+                    onClick={handleSubmit}
+                >
                     GUARDAR MIS PREFERENCIAS
-              </Button>
-            
-        </Container>
+                </Button>
+
+            </Container>
         </>
   )
 }
 
 export default FormPremium
-
 
 const Heading = styled.h1`
     font-family: 'Lato', sans-serif;
@@ -125,7 +162,6 @@ const Heading = styled.h1`
 const Span = styled.span`
     color: #FFC947;
     `
-   
 
 const Container = styled.div`
     display: flex;
@@ -149,6 +185,7 @@ const Select = styled.select`
     color: #9497FF;
     font-weight: 900;
     font-size: 1.0rem;
+    text-Transform: uppercase;
     ::placeholder {
         text-align: center;
     }
@@ -217,5 +254,3 @@ transition: all 0.3s ease;
 
 
     `
-
-

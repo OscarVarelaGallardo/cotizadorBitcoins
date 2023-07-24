@@ -13,28 +13,23 @@ import imgUser3 from '../img/fotoUser3.jpeg'
 import imgUser4 from '../img/fotoUser4.jpg'
 import Notification from '../components/Notification'
 import {
-  Container_Cards,
-  Container_Planes,
-  Container_Testimonios,
+  ContainerCards,
+  ContainerPlanes,
+  ContainerTestimonios,
   Contenedor,
   Heading,
   Heading3,
   Imagen,
   Span
-} from '../styles/Index.js'
-
+} from '../styles/IndexStyles.js'
 
 const Index = () => {
-
-
   const [monedas, setMonedas] = useState({})
   const [resultado, setResultado] = useState({})
   const [cargando, setCargando] = useState(false)
 
-
   useEffect(() => {
     if (Object.keys(monedas).length > 0) {
-
       const cotizarCripto = async () => {
         setCargando(true)
         setResultado({})
@@ -56,11 +51,9 @@ const Index = () => {
 
   return (
     <>
-      <Notification
-        children='¡Bienvenido a CriptoCotiza!'
-      />
+      <Notification title='¡Bienvenido!'/>
       <Contenedor>
-        
+
         <Imagen
           src={ImagenCripto}
           alt="imagenes criptomonedas"
@@ -83,7 +76,7 @@ const Index = () => {
 
       </Contenedor>
 
-      <Container_Cards >
+      <ContainerCards >
         <Card
           title="Tus datos están seguros"
           description="Tus datos están protegidos con los más altos estándares de seguridad."
@@ -102,9 +95,9 @@ const Index = () => {
           title="El mejor sitio para cotizar "
           description="Cotiza tus criptomonedas al instante con la mejor información."
         />
-      </Container_Cards>
+      </ContainerCards>
 
-      <Container_Planes>
+      <ContainerPlanes>
         <CardPremium
           title='PLAN MENSUAL'
           textPremium='¡Pruébalo gratis por 7 días!'
@@ -121,19 +114,19 @@ const Index = () => {
           textPremium='¡Pruébalo gratis por 7 días!'
           cost='Después $99.99/año'
         />
-      </Container_Planes>
+      </ContainerPlanes>
       <Heading3>Testimonios </Heading3>
-      <Container_Testimonios>
-        <CardTestimonial 
+      <ContainerTestimonios>
+        <CardTestimonial
           img={imgUser1}
           testimonio='Incremente mis ganancias en un 30% en tan solo 2 meses. '
           nombre='Juan Perez'
 
         />
-        <CardTestimonial 
+        <CardTestimonial
           img={imgUser2}
           testimonio='Excelente servicio, me encanta disfruto mucho de la aplicación.'
-        
+
           nombre='Maria Lopez'
         />
         <CardTestimonial
@@ -141,13 +134,13 @@ const Index = () => {
           testimonio='Adoro esta aplicación, me ha ayudado a tomar las mejores decisiones.'
           nombre='Anna Smith'
         />
-        <CardTestimonial 
+        <CardTestimonial
           img={imgUser4}
           testimonio='Tengo las notificaciones siempre activas, me encanta estar informado en todo momento.'
           nombre='Pedro Rodriguez'
         />
 
-      </Container_Testimonios>
+      </ContainerTestimonios>
 
     </>
 
@@ -155,6 +148,3 @@ const Index = () => {
 }
 
 export default Index
-
-
-

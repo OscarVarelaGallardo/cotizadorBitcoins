@@ -1,4 +1,3 @@
-
 import styled from '@emotion/styled'
 import imgFacebook from '../img/facebookIcon.png'
 import imgInstagram from '../img/instagramIcon.png'
@@ -7,9 +6,9 @@ import imgTrusted from '../img/trustedBy.png'
 
 import { Link } from 'react-router-dom'
 const Footer = () => {
-    return (
+  return (
         <Container>
-            <Container_info>
+            <ContainerInfo>
                 <TextFooter>
                     ¿Quieres saber como invertir en criptomonedas ?
                 </TextFooter>
@@ -24,7 +23,7 @@ const Footer = () => {
                         <Linke to="/Blog">¿Qué es el minado ?</Linke>
                     </LI>
                 </UL>
-            </Container_info>
+            </ContainerInfo>
             <Link to="https://min-api.cryptocompare.com">
             <IMG
                 src={imgTrusted}
@@ -43,10 +42,9 @@ const Footer = () => {
                 © {new Date().getFullYear()} - Todos los derechos reservados
             </Text>
 
-
         </Container>
 
-    )
+  )
 }
 
 export default Footer
@@ -80,14 +78,13 @@ const TextFooter = styled.p`
 
     `
 
-const Container_info = styled.div`
+const ContainerInfo = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     column-gap: 2rem;
     justify-items: center;
 
     `
-
 
 const Icons = styled.div`
 

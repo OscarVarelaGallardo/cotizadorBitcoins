@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-const Container_Testimonios = styled.div`
+const ContainerTestimonios = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   column-gap: 2rem;
@@ -42,8 +42,7 @@ const Button3 = styled.button`
   }
 `
 
-
-const Card_Testimonio = styled.div`
+const CardTestimonio = styled.div`
   background-color: #FBAE56;
   border-radius: 10px;
   padding: 1rem;
@@ -57,10 +56,6 @@ const Card_Testimonio = styled.div`
     margin-bottom: 2rem;
   }
 `
-
-
-
-
 
 const Span = styled.span`
   color: #66A2FE;
@@ -140,7 +135,7 @@ const Heading = styled.h1`
 
 
 `
-const Container_Cards = styled.div`
+const ContainerCards = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   column-gap: 2rem;
@@ -168,7 +163,7 @@ const Container_Cards = styled.div`
       max-width: 100rem;
   }
 `
-const Container_Planes = styled.div`
+const ContainerPlanes = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -190,7 +185,7 @@ const Container_Planes = styled.div`
     }
     `
 
-const Card_Premium = styled.div`
+const ContainerCardPremium = styled.div`
     background-color: #9497FF;
     border-radius: 0.5rem;
     padding: 10rem 2rem;
@@ -259,23 +254,23 @@ const Span2 = styled.span`
 
     `
 
-export{
-    Container_Testimonios,
-    Button3,
-    Card_Testimonio,
-    Span,
-    Heading3,
-    Span3,
-    Contenedor,
-    Imagen,
-    Heading,
-    Container_Cards,
-    Container_Planes,
-    Card_Premium,
-    Heading2,
-    TextPremium2,
-    Button2,
-    TextPremium,
-    Span2
+export {
+  ContainerTestimonios,
+  Button3,
+  CardTestimonio,
+  Span,
+  Heading3,
+  Span3,
+  Contenedor,
+  Imagen,
+  Heading,
+  ContainerCards,
+  ContainerPlanes,
+  ContainerCardPremium,
+  Heading2,
+  TextPremium2,
+  Button2,
+  TextPremium,
+  Span2
 
 }

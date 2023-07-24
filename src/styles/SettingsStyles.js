@@ -31,7 +31,7 @@ const Heading = styled.h1`
     font-size: 1.7rem;
 
 
-`//colocar a la izquierda
+`
 const Heading2 = styled.h2`
     font-family: 'Lato', sans-serif, 'system-ui';
     color: #FFF;
@@ -153,19 +153,19 @@ const Linka = styled(Link)`
     }
     `
 
-    export {
-        Container,
-        Heading,
-        Heading2,
-        Button,
-        Imagen,
-        Line,
-        Span,
-        CardPremium,
-        ButtonPremium,
-        TextPremium,
-        P,
-        Linka,
-        Span2
+export {
+  Container,
+  Heading,
+  Heading2,
+  Button,
+  Imagen,
+  Line,
+  Span,
+  CardPremium,
+  ButtonPremium,
+  TextPremium,
+  P,
+  Linka,
+  Span2
 
-    }
+}

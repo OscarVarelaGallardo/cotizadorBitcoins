@@ -1,76 +1,66 @@
-
 import styled from '@emotion/styled'
-import { useState,useContext } from 'react'
+import { useState, useContext } from 'react'
 import { formateDateForInputDate, updateUserData } from '../helpers/index'
-import  AuthContext  from '../context/AuthProvider'
+import AuthContext from '../context/AuthProvider'
 import Swal from 'sweetalert2'
 import Error from './Error'
 import { useNavigate } from 'react-router-dom'
 
 const FormularioMiCuenta = ({ isUserPremium }) => {
-  
-    const { user, setUser } = useContext(AuthContext)
-    const [userEdit, setUsetEdit ] = useState({})
-    const [error , setError] = useState(false)
-    const { nombre, apellidos, fecha_nacimiento, email, id } = user
+  const { user, setUser } = useContext(AuthContext)
+  const [userEdit, setUsetEdit] = useState({})
+  const [error, setError] = useState(false)
+  // eslint-disable-next-line camelcase
+  const { nombre, apellidos, fecha_nacimiento, email, id } = user
 
-    const navigate = useNavigate()
-    const handleChangeData = (e) => {
-        setUsetEdit({
-            ...userEdit,
-            [e.target.name]: e.target.value
-        })
-        setUser({
-            ...user,
-            [e.target.name]: e.target.value
-        })
-        
+  const navigate = useNavigate()
+  const handleChangeData = (e) => {
+    setUsetEdit({
+      ...userEdit,
+      [e.target.name]: e.target.value
+    })
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (userEdit.password === userEdit.repetir_password) {
+      updateUserData(userEdit, id)
+
+        .then(data => {
+          if (data) {
+            Swal.fire({
+              icon: 'success',
+              title: 'Correcto',
+              text: 'Contraseña actualizada correctamente',
+              timer: 1500
+            })
+          }
+          setError(false)
+          navigate('/')
+        })
     }
+    updateUserData(userEdit, id)
+      .then(data => {
+        if (data) {
+          Swal.fire({
+            icon: 'success',
+            title: 'Correcto',
+            text: 'Datos actualizados correctamente',
+            timer: 1500
+          })
+        }
+        setError(false)
+        navigate('/')
+      }
+      )
+  }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-
-
-
-        if (userEdit.password === userEdit.repetir_password) {
-            updateUserData(userEdit, id)
-            
-                .then(data => { 
-                    if(data){
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Correcto',
-                            text: 'Contraseña actualizada correctamente',
-                            timer: 1500
-                        })
-                    }
-            setError(false)
-                    navigate('/')
-        })
-
-        } 
-        updateUserData(userEdit, id)
-            .then(data => {
-                if(data){
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Correcto',
-                        text: 'Datos actualizados correctamente',
-                        timer: 1500
-                    })
-                }
-                setError(false)
-                navigate('/')
-            }
-            )
-            
-    }
-
-
-      
-
-    return (
+  return (
         <>
 
         {
@@ -93,7 +83,7 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
         <Label
             htmlFor='apellidos'
         >
-            Apellidos   
+            Apellidos
         </Label>
         <Input
             type='text'
@@ -116,15 +106,15 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
             onChange={handleChangeData}
             value={formateDateForInputDate(fecha_nacimiento)}
             disabled
-            style={{color:'white'}}
-           
+            style={{ color: 'white' }}
+
         />
         <Label
             htmlFor='email'
         >
             Email
         </Label>
-        
+
         <Input
             type='email'
             name='email'
@@ -133,9 +123,8 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
             onChange={handleChangeData}
             disabled
             value={email}
-            style={{color:'white'}}
+            style={{ color: 'white' }}
         />
-
 
         <Label
             htmlFor='buttonPassword'
@@ -148,21 +137,28 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
             id='buttonPassword'
             placeholder='Contraseña'
             onClick={() => {
-                const inputPassword = document.querySelectorAll('input[type="password"]')
-                inputPassword.forEach(input => {
-                    input.disabled = false
-                })
-                
+              const inputPassword = document.querySelectorAll('input[type="password"]')
+              inputPassword.forEach(input => {
+                input.disabled = false
+              })
             }}
             value='Modificar contraseña'
-            style={{color:'white',backgroundColor:'#66A2FE',border:'none',padding:'0.5rem',borderRadius:'5px',cursor:'pointer',marginBottom:'0.5rem ', width:'20%',
-            fontFamily: 'Inter, sans-serif',
-            //hover
-            '&:hover':{
-                backgroundColor:'#326AC0'
-            }
-            
-        }}
+            style={{
+              color: 'white',
+              backgroundColor: '#66A2FE',
+              border: 'none',
+              padding: '0.5rem',
+              borderRadius: '5px',
+              cursor: 'pointer',
+              marginBottom: '0.5rem ',
+              width: '20%',
+              fontFamily: 'Inter, sans-serif',
+              // hover
+              '&:hover': {
+                backgroundColor: '#326AC0'
+              }
+
+            }}
         />
         <Label
             htmlFor='oldPassword'
@@ -176,10 +172,8 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
             placeholder='Contraseña'
             onChange={handleChangeData}
             disabled
-          
-        
-        />
 
+        />
 
         <Label
             htmlFor='password'
@@ -206,13 +200,12 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
             placeholder='Contraseña'
             onChange={handleChangeData}
             disabled
-            
 
         />
 
-        
        {
-              !isUserPremium? <Button
+              !isUserPremium
+                ? <Button
                     type='submit'
                     onClick={
                         handleSubmit
@@ -220,9 +213,10 @@ const FormularioMiCuenta = ({ isUserPremium }) => {
 
               >
                    ACTUALIZAR DATOS
-              </Button>: null
+              </Button>
+                : null
        }
-    
+
     </ContainerForm>
         </>
   )
