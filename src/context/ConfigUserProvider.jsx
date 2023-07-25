@@ -2,24 +2,26 @@ import { createContext, useState } from 'react'
 
 const ConfigUserContext = createContext()
 
-
-const ConfigUserProvider = () => {
-    const [config, setConfig] = useState({
-       
-    })
+const ConfigUserProvider = ({ children }) => {
+  const [configUser, setConfigUser] = useState({
+    id: '',
+    email: '',
+    nombre: '',
+    apellidos: '',
+    fecha_nacimiento: '',
+    pro: '',
+    token: ''
+  })
 
   return (
-   <ConfigUserContext.Provider value={{config}}>
-        {children}
+    <ConfigUserContext.Provider value={{
+      configUser,
+      setConfigUser
+    }} >
+      {children}
     </ConfigUserContext.Provider>
-
-        
-
   )
 }
 
-export {
-    ConfigUserProvider
-}
-
-export default ConfigUserProvider
+export { ConfigUserProvider }
+export default ConfigUserContext

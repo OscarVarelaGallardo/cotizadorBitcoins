@@ -44,8 +44,6 @@ const postUserData = async ({ email }) => {
 }
 
 const updateUserData = async (userEdit, id) => {
-  console.log(userEdit)
-
   if (userEdit.password) {
     try {
       const { oldPassword, password } = userEdit
@@ -132,6 +130,26 @@ const sendRegister = async ({ nombre, apellidos, fecha_nacimiento, email, passwo
   }
 }
 
-export { formateDateForInputDate, postUserData, updateUserData, sendRegister }
+const getPreferences = async (id) => {
+  console.log(id)
+  try {
+    const URL = `https://cotiza-bitcoin.onrender.com/bitpro/getUserProData/${id}`
+    const response = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+    if (response.ok) {
+      const data = await response.json()
+      return data
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export { formateDateForInputDate, postUserData, updateUserData, sendRegister, getPreferences }
 
 export default sendData
