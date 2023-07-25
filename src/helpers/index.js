@@ -13,8 +13,6 @@ const sendData = async ({ password, email }) => {
       const data = await response.json()
       return data
     }
-
-    throw new Error('Request failed!')
   } catch (error) {
     console.log(error)
   }
@@ -36,8 +34,6 @@ const postUserData = async ({ email }) => {
 
       return data
     }
-
-    throw new Error('Request failed!')
   } catch (error) {
     console.log(error)
   }
@@ -62,7 +58,6 @@ const updateUserData = async (userEdit, id) => {
       })
       if (response.ok) {
         const data = await response.json()
-        console.log(data)
         return data
       }
     } catch (error) {
@@ -86,7 +81,6 @@ const updateUserData = async (userEdit, id) => {
     })
     if (response.ok) {
       const data = await response.json()
-      console.log('enviando datos')
       return data
     }
   } catch (error) {
@@ -131,7 +125,6 @@ const sendRegister = async ({ nombre, apellidos, fecha_nacimiento, email, passwo
 }
 
 const getPreferences = async (id) => {
-  console.log(id)
   try {
     const URL = `https://cotiza-bitcoin.onrender.com/bitpro/getUserProData/${id}`
     const response = await fetch(URL, {
