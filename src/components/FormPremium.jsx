@@ -3,19 +3,23 @@ import { useState, useContext, useEffect } from 'react'
 import AuthContext from '../context/AuthProvider'
 import { getPreferences } from '../helpers'
 import ConfigUserContext from '../context/ConfigUserProvider'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
+
 const FormPremium = () => {
   const [dataPremiumuser, setDataPremiumUser] = useState({})
-  const [preferences, setPreferences] = useState({})
-  const { user } = useContext(AuthContext)
-  const { configUser, setConfigUser } = useContext(ConfigUserContext)
 
+  const { user } = useContext(AuthContext)
+  const { setConfigUser } = useContext(ConfigUserContext)
+  const navigate = useNavigate()
   const { email, id } = user
 
   useEffect(() => {
     const getData = async () => {
       const data = await getPreferences(id)
-      setPreferences(data)
+
       setConfigUser(data)
+      setDataPremiumUser(data)
     }
     getData()
   }, [])
@@ -31,6 +35,25 @@ const FormPremium = () => {
         body: JSON.stringify(dataUser)
       })
       const data = await response.json()
+
+      if (response.status === 200) {
+        setDataPremiumUser({
+          ...data
+        })
+        Swal.fire({
+          icon: 'success',
+          title: '¡Datos guardados correctamente!',
+          showConfirmButton: true,
+          timer: 1500
+        })
+        navigate('/')
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Algo salió mal!'
+        })
+      }
     } catch (error) {
       console.log(error)
     }
@@ -38,7 +61,6 @@ const FormPremium = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('submit')
     const dataUser = Object.assign(dataPremiumuser, { email })
     if (Object.keys(dataUser).length === 0) {
       console.log('error al cargar datos')
@@ -65,7 +87,7 @@ const FormPremium = () => {
                         <Select
                             name="frecuencia"
                             onChange={handleClick}
-                            value={preferences.frecuencia ?? ''}
+                            value={dataPremiumuser.frecuencia ?? ''}
 
                         >
                             <option
@@ -86,7 +108,7 @@ const FormPremium = () => {
                         <Select
                             name="monedas"
                             onChange={handleClick}
-                            value={preferences.monedas}
+                            value={dataPremiumuser.monedas}
                         >
                             <option selected disabled hidden value="">Selecciona una opción</option>
                             <option value="bitcoin">Bitcoin</option>
@@ -105,7 +127,7 @@ const FormPremium = () => {
                         <Select
                             name="monedasFavoritas"
                             onChange={handleClick}
-                            value={preferences.monedasFavoritas ?? ''}
+                          value={dataPremiumuser.monedasFavoritas ?? ''}
                         >
                             <option selected disabled hidden value="">Selecciona una opción</option>
                             <option value="MXN">MXN</option>
@@ -127,7 +149,7 @@ const FormPremium = () => {
                         <Select
                             name="alertas"
                             onChange={handleClick}
-                            value={preferences.alertas}
+                          value={dataPremiumuser.alertas}
                         >
                             <option selected disabled hidden value="">Selecciona una opción</option>
                             <option value="precio">Precio</option>
@@ -139,7 +161,7 @@ const FormPremium = () => {
                         <Select
                             name="tipoAlerta"
                             onChange={handleClick}
-                            value={preferences.tipoAlerta ?? ''}
+                          value={dataPremiumuser.tipoAlerta ?? ''}
                         >
                             <option selected disabled hidden value="">Selecciona una opción</option>
                             <option value="mayor">Mayor</option>
@@ -152,7 +174,7 @@ const FormPremium = () => {
                         <Input type="text" name="name"
                             onChange={handleClick}
                             placeholder="Ejem: 1000"
-                            value={preferences.name ?? ''}
+                          value={dataPremiumuser.name ?? ''}
                         />
                     </Label>
                 </Form>
