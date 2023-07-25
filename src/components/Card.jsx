@@ -11,11 +11,11 @@ const Card = ({ title, description }) => {
           textAlign: 'center',
           color: '#FFF',
           width: '100%',
-          borderRadius: '10px ',
-          padding: '10px',
           border: '1px solid #66A2FE',
           boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-          margin: '10px 0'
+          margin: '10px 0',
+          padding: '20px',
+          borderRadius: '10px'
 
         }} >
             <h2

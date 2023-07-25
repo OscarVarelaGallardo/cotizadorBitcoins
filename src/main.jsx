@@ -12,6 +12,7 @@ import FormaPago from './views/Premium/FormaPago'
 import Error from './views/Error'
 import { Blog } from './views/Blog'
 import { AuthProvider } from './context/AuthProvider'
+import { ConfigUserProvider } from './context/ConfigUserProvider'
 
 const router = createBrowserRouter([
   {
@@ -60,7 +61,9 @@ const router = createBrowserRouter([
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
+      <ConfigUserProvider>
       <RouterProvider router={router} />
+      </ConfigUserProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
