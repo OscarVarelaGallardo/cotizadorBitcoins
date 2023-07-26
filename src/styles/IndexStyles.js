@@ -188,14 +188,14 @@ const ContainerCards = styled.div`
   max-width: 320px;
   margin: 0 auto;
   margin-bottom: 10rem;
-  margin-top: 5rem;
+  margin-top: 10rem;
   @media (min-width: 375px) {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     max-width: 320px;
     padding: 0 2rem;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 15rem;
     
     @media (min-width: 768px) {
     display: grid;
