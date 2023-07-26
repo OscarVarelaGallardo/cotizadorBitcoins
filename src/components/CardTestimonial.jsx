@@ -1,23 +1,26 @@
-import { CardTestimonio, TextPremium2 } from '../styles/IndexStyles.js'
+import { CardTestimonio, TextPremium2, TextPremiumName } from '../styles/IndexStyles.js'
 
-const CardTestimonial = ({ img, testimonio, nombre }
+const CardTestimonial = ({ img, testimonio, nombre, fecha, _id }
 ) => {
   return (
-      <CardTestimonio>
-          <img
+      <CardTestimonio >
+         <img
               style={{
-                width: '200px',
-                height: '200px',
+                width: '100px',
+                height: '100px',
                 borderRadius: '50%',
+                margin: '0 auto',
                 display: 'block',
-                margin: 'auto'
+                marginTop: '20px'
+
               }}
 
               src={img} alt="imagen-testimonio1" border="0" />
 
-          <TextPremium2>{testimonio}</TextPremium2>
+          <TextPremium2>{testimonio}
+        <TextPremiumName> - {nombre}</TextPremiumName>
+          </TextPremium2>
 
-          <TextPremium2> - {nombre}</TextPremium2>
       </CardTestimonio>
   )
 }

@@ -7,11 +7,9 @@ import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
 import ImagenCripto from '../img/imagen-criptos.png'
 import imgUser1 from '../img/fotoUser1.jpeg'
-import imgUser2 from '../img/fotoUser2.jpeg'
-import imgUser3 from '../img/fotoUser3.jpeg'
-import imgUser4 from '../img/fotoUser4.jpg'
 import Notification from '../components/Notification'
 import ContainerCard from '../components/ContainerCard'
+import Message from '../components/Message'
 
 import {
   ContainerPlanes,
@@ -21,12 +19,14 @@ import {
   Heading3,
   Imagen,
   Span
+
 } from '../styles/IndexStyles.js'
 
 const Index = () => {
   const [monedas, setMonedas] = useState({})
   const [resultado, setResultado] = useState({})
   const [cargando, setCargando] = useState(false)
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
     if (Object.keys(monedas).length > 0) {
@@ -48,6 +48,20 @@ const Index = () => {
       cotizarCripto()
     }
   }, [monedas])
+
+  useEffect(() => {
+    try {
+      const getMessages = async () => {
+        const response = await fetch('http://localhost:8000/messages')
+        const data = await response.json()
+
+        setMessages(data.body)
+      }
+      getMessages()
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
 
   return (
     <>
@@ -84,7 +98,7 @@ const Index = () => {
         <CardPremium
           title='PLAN SEMESTRAL'
           textPremium='¡Pruébalo gratis por 7 días!'
-          cost='Después $49.99/año'
+          cost='Después $49.99/semestre'
         />
 
         <CardPremium
@@ -95,31 +109,23 @@ const Index = () => {
       </ContainerPlanes>
       <Heading3>Testimonios </Heading3>
       <ContainerTestimonios>
-        <CardTestimonial
-          img={imgUser1}
-          testimonio='Incremente mis ganancias en un 30% en tan solo 2 meses. '
-          nombre='Juan Perez'
-
-        />
-        <CardTestimonial
-          img={imgUser2}
-          testimonio='Excelente servicio, me encanta disfruto mucho de la aplicación.'
-
-          nombre='Maria Lopez'
-        />
-        <CardTestimonial
-          img={imgUser3}
-          testimonio='Adoro esta aplicación, me ha ayudado a tomar las mejores decisiones.'
-          nombre='Anna Smith'
-        />
-        <CardTestimonial
-          img={imgUser4}
-          testimonio='Tengo las notificaciones siempre activas, me encanta estar informado en todo momento.'
-          nombre='Pedro Rodriguez'
-        />
+    {
+      messages.map((message) => {
+        return (
+          <CardTestimonial
+            key={message._id}
+            img={imgUser1}
+            testimonio={message.message}
+            nombre={message.name}
+            fecha={message.date}
+          />
+        )
+      }
+      )
+    }
 
       </ContainerTestimonios>
-
+    <Message/>
     </>
 
   )

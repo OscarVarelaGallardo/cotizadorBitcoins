@@ -1,17 +1,33 @@
 import styled from '@emotion/styled'
+const TextPremiumName = styled.h2`
+
+  font-size: 1.0rem;
+  font-weight: 700;
+  color: black;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  @media (min-width: 768px) {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+
+  }
+  `
 
 const ContainerTestimonios = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   column-gap: 2rem;
-  max-width: 320px;
+  max-width: 300px;
   padding: 0 2rem;
   margin: 0 auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
   @media (min-width: 768px) {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 2fr);
     column-gap: 2rem;
     max-width: 1200px;
     padding: 0 2rem;
@@ -43,17 +59,25 @@ const Button3 = styled.button`
 `
 
 const CardTestimonio = styled.div`
-  background-color: #FBAE56;
+  background-color: #fff;
   border-radius: 10px;
-  padding: 1rem;
-  margin-top: 2rem;
+  padding: 0rem;
+  margin-top: 1rem;
   margin-bottom: 2rem;
+
   @media (min-width: 768px) {
-    background-color: #FBAE56;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 1200px;
+    background-color: #fff;
     border-radius: 10px;
     padding: 1rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    max-height: 300px;
+    min-height: 200px;
+    min-width: 300px;
+
   }
 `
 
@@ -242,7 +266,7 @@ const Heading2 = styled.h1`
     `
 const TextPremium2 = styled.p`
     font-family: 'Lato', sans-serif, 'system-ui';
-    color: #fff;
+    color: black;
     text-align: center;
     font-weight: 900;
     font-size: 1.0rem;
@@ -299,6 +323,7 @@ export {
   TextPremium2,
   Button2,
   TextPremium,
-  Span2
+  Span2,
+  TextPremiumName
 
 }
