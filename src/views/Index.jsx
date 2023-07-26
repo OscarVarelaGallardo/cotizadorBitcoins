@@ -10,6 +10,7 @@ import imgUser1 from '../img/fotoUser1.jpeg'
 import Notification from '../components/Notification'
 import ContainerCard from '../components/ContainerCard'
 import Message from '../components/Message'
+import bitcoinUser from '../img/bitcoinMain.jpeg'
 
 import {
   ContainerPlanes,
@@ -21,6 +22,7 @@ import {
   Span
 
 } from '../styles/IndexStyles.js'
+import VisionMision from '../components/VisionMision'
 
 const Index = () => {
   const [monedas, setMonedas] = useState({})
@@ -72,7 +74,7 @@ const Index = () => {
           alt="imagenes criptomonedas"
         />
 
-        <div>
+        <div >
           <Link to={'/'}
             style={{ textDecoration: 'none' }}
           >
@@ -84,8 +86,15 @@ const Index = () => {
           {cargando && <Spinner />}
           {resultado.PRICE && <Resultado resultado={resultado} />}
         </div>
+         <VisionMision/>
 
-      </Contenedor>
+        <div>
+          <img src={bitcoinUser} alt="imagen-Bitcoin" border="0" style={{
+            width: '100%', height: '92%', objectFit: 'cover', borderRadius: '1rem', marginTop: '2rem', marginBottom: '2rem'
+          }} />
+        </div>
+
+    </Contenedor >
 
      <ContainerCard/>
 
@@ -109,6 +118,7 @@ const Index = () => {
       </ContainerPlanes>
       <Heading3>Testimonios </Heading3>
       <ContainerTestimonios>
+
     {
       messages.map((message) => {
         return (
