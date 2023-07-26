@@ -12,6 +12,7 @@ import imgUser3 from '../img/fotoUser3.jpeg'
 import imgUser4 from '../img/fotoUser4.jpg'
 import Notification from '../components/Notification'
 import ContainerCard from '../components/ContainerCard'
+import Message from '../components/Message'
 
 import {
   ContainerPlanes,
@@ -21,6 +22,7 @@ import {
   Heading3,
   Imagen,
   Span
+
 } from '../styles/IndexStyles.js'
 
 const Index = () => {
@@ -84,7 +86,7 @@ const Index = () => {
         <CardPremium
           title='PLAN SEMESTRAL'
           textPremium='¡Pruébalo gratis por 7 días!'
-          cost='Después $49.99/año'
+          cost='Después $49.99/semestre'
         />
 
         <CardPremium
@@ -119,7 +121,7 @@ const Index = () => {
         />
 
       </ContainerTestimonios>
-
+    <Message/>
     </>
 
   )

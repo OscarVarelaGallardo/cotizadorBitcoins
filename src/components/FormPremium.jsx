@@ -17,7 +17,6 @@ const FormPremium = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await getPreferences(id)
-
       setConfigUser(data)
       setDataPremiumUser(data)
     }
@@ -77,6 +76,8 @@ const FormPremium = () => {
     })
   }
 
+  if (dataPremiumuser === undefined) return navigate('/')
+
   return (
         <>
             <Container>
@@ -87,14 +88,9 @@ const FormPremium = () => {
                         <Select
                             name="frecuencia"
                             onChange={handleClick}
-                            value={dataPremiumuser.frecuencia ?? ''}
-
+                            defaultValue={dataPremiumuser?.frecuencia ?? ''}
                         >
-                            <option
-                                selected
-                                disabled
-
-                            >Selecciona una opción</option>
+                            <option selected disabled value="">Selecciona una opción</option>
                             <option value="nunca">Nunca</option>
                             <option value="diario">Diario</option>
                             <option value="semanal">Semanal</option>
@@ -108,9 +104,9 @@ const FormPremium = () => {
                         <Select
                             name="monedas"
                             onChange={handleClick}
-                            value={dataPremiumuser.monedas}
+                            defaultValue={dataPremiumuser?.monedas ?? ''}
                         >
-                            <option selected disabled hidden value="">Selecciona una opción</option>
+                            <option selected disabled value="">Selecciona una opción</option>
                             <option value="bitcoin">Bitcoin</option>
                             <option value="ethereum">Ethereum</option>
                             <option value="litecoin">Litecoin</option>
@@ -127,9 +123,9 @@ const FormPremium = () => {
                         <Select
                             name="monedasFavoritas"
                             onChange={handleClick}
-                          value={dataPremiumuser.monedasFavoritas ?? ''}
+                            defaultValue={dataPremiumuser?.monedasFavoritas ?? ''}
                         >
-                            <option selected disabled hidden value="">Selecciona una opción</option>
+                            <option selected disabled value="">Selecciona una opción</option>
                             <option value="MXN">MXN</option>
                             <option value="USD">USD</option>
                             <option value="CAN">CAN</option>
@@ -149,9 +145,9 @@ const FormPremium = () => {
                         <Select
                             name="alertas"
                             onChange={handleClick}
-                          value={dataPremiumuser.alertas}
+                            defaultValue={dataPremiumuser?.alertas ?? ''}
                         >
-                            <option selected disabled hidden value="">Selecciona una opción</option>
+                          <option selected disabled value="">Selecciona una opción</option>
                             <option value="precio">Precio</option>
                             <option value="porcentaje">Porcentaje</option>
                         </Select>
@@ -161,9 +157,9 @@ const FormPremium = () => {
                         <Select
                             name="tipoAlerta"
                             onChange={handleClick}
-                          value={dataPremiumuser.tipoAlerta ?? ''}
+                            defaultValue={dataPremiumuser?.tipoAlerta ?? ''}
                         >
-                            <option selected disabled hidden value="">Selecciona una opción</option>
+                          <option selected disabled value="">Selecciona una opción</option>
                             <option value="mayor">Mayor</option>
                             <option value="igual">Medio</option>
                             <option value="menor">Menor</option>
@@ -174,7 +170,7 @@ const FormPremium = () => {
                         <Input type="text" name="name"
                             onChange={handleClick}
                             placeholder="Ejem: 1000"
-                          value={dataPremiumuser.name ?? ''}
+                            defaultValue={dataPremiumuser?.name ?? ''}
                         />
                     </Label>
                 </Form>
