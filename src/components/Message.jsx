@@ -12,7 +12,7 @@ const Message = () => {
   const sendMessage = async (message) => {
     try {
       console.log(message)
-      const response = await fetch('http://localhost:8000/message', {
+      const response = await fetch('https://bitcoinsbackend.onrender.com/message', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -54,7 +54,7 @@ const Index = () => {
   useEffect(() => {
     try {
       const getMessages = async () => {
-        const response = await fetch('http://localhost:8000/messages')
+        const response = await fetch('https://bitcoinsbackend.onrender.com/messages')
         const data = await response.json()
 
         setMessages(data.body)
@@ -102,18 +102,18 @@ const Index = () => {
         <CardPremium
           title='PLAN MENSUAL'
           textPremium='¡Pruébalo gratis por 7 días!'
-          cost='Después $9.99/mes'
+          cost='Después $99.99/mes mxn'
         />
         <CardPremium
           title='PLAN SEMESTRAL'
           textPremium='¡Pruébalo gratis por 7 días!'
-          cost='Después $49.99/semestre'
+          cost='Después $499.99/semestre'
         />
 
         <CardPremium
           title='PLAN ANUAL'
           textPremium='¡Pruébalo gratis por 7 días!'
-          cost='Después $99.99/año'
+          cost='Después $999.99/año'
         />
       </ContainerPlanes>
       <Heading3>Testimonios </Heading3>
