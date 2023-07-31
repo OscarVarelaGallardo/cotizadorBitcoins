@@ -12,7 +12,7 @@ import bitcoinUser from '../img/bitcoinMain.jpeg'
 import imgUser1 from '../img/fotoUser1.jpeg'
 import ImagenCripto from '../img/imagen-criptos.png'
 import ConfigUserContext from '../context/ConfigUserProvider'
-import Notification from '../components/Notification'
+
 import getBitcoinData from '../data/getBitcoinData'
 import {
   ContainerPlanes,
@@ -30,23 +30,25 @@ const Index = () => {
   const [cargando, setCargando] = useState(false)
   const [messages, setMessages] = useState([])
   const [bitcoinData, setBitcoinData] = useState({})
-  const [notification, setNotification] = useState(false)
+  const [setNotification] = useState(false)
   const { configUser } = useContext(ConfigUserContext)
 
   useEffect(() => {
-    if (Object.keys(configUser).length > 0) {
-      const bicointData = async () => {
-        const data = await getBitcoinData(configUser)
-        console.log(data.value)
-        setBitcoinData(data.value)
-        console.log(bitcoinData)
-        if (data) {
-          return setNotification(true)
-        } else {
-          return setNotification(false)
+    if (configUser) {
+      if (Object.keys(configUser).length > 0) {
+        const bicointData = async () => {
+          const data = await getBitcoinData(configUser)
+          console.log(data.value)
+          setBitcoinData(data.value)
+          console.log(bitcoinData)
+          if (data) {
+            return setNotification(true)
+          } else {
+            return setNotification(false)
+          }
         }
+        bicointData()
       }
-      bicointData()
     }
   }, [])
 
@@ -86,12 +88,7 @@ const Index = () => {
 
   return (
     <>
-    {
-      notification && <Notification
 
-      />
-
-    }
       <Contenedor>
         <Imagen
           src={ImagenCripto}

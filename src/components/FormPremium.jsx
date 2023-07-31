@@ -83,7 +83,7 @@ const FormPremium = () => {
                         <Select
                             name="frecuencia"
                             onChange={handleClick}
-                            value={dataPremiumuser.frecuencia ?? ''}
+                            value={dataPremiumuser?.frecuencia ?? ''}
 
                         >
                             <option selected disabled defaultValue="">Selecciona una opción</option>
@@ -100,7 +100,7 @@ const FormPremium = () => {
                         <Select
                             name="monedas"
                             onChange={handleClick}
-              value={dataPremiumuser.monedas ?? ''}
+                          value={dataPremiumuser?.monedas ?? ''}
                         >
                             <option selected disabled value="">Selecciona una opción</option>
                             <option value="bitcoin">Bitcoin</option>
@@ -119,7 +119,7 @@ const FormPremium = () => {
                         <Select
                             name="monedasFavoritas"
                             onChange={handleClick}
-              value={dataPremiumuser?.monedasFavoritas ?? ''}
+                        value={dataPremiumuser?.monedasFavoritas ?? ''}
                         >
                             <option selected disabled value="">Selecciona una opción</option>
                             <option value="MXN">MXN</option>

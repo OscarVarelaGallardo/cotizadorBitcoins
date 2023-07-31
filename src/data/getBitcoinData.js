@@ -4,7 +4,6 @@ export const getBitcoinData = async (
   if (!configUser) {
     return
   }
-  const { monedas, monedasFavoritas } = configUser
 
   try {
     const URL = 'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=MXN'
@@ -16,7 +15,7 @@ export const getBitcoinData = async (
     })
     if (response.ok) {
       const data = await response.json()
-      console.log({ value: data })
+
       const bitcoinData = {
         value: data.MXN
       }
