@@ -76,8 +76,6 @@ const FormPremium = () => {
     })
   }
 
-  if (dataPremiumuser === undefined) return navigate('/')
-
   return (
         <>
             <Container>

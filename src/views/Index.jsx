@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import CardPremium from '../components/CardPremium'
 import CardTestimonial from '../components/CardTestimonial'
+import ContainerCard from '../components/ContainerCard'
 import Formulario from '../components/Formulario'
+import Message from '../components/Message'
+import Notification from '../components/Notification'
 import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
-import ImagenCripto from '../img/imagen-criptos.png'
-import imgUser1 from '../img/fotoUser1.jpeg'
-import Notification from '../components/Notification'
-import ContainerCard from '../components/ContainerCard'
-import Message from '../components/Message'
+import VisionMision from '../components/VisionMision'
 import bitcoinUser from '../img/bitcoinMain.jpeg'
-
+import imgUser1 from '../img/fotoUser1.jpeg'
+import ImagenCripto from '../img/imagen-criptos.png'
 import {
   ContainerPlanes,
   ContainerTestimonios,
@@ -20,9 +20,7 @@ import {
   Heading3,
   Imagen,
   Span
-
 } from '../styles/IndexStyles.js'
-import VisionMision from '../components/VisionMision'
 
 const Index = () => {
   const [monedas, setMonedas] = useState({})
@@ -56,14 +54,13 @@ const Index = () => {
       const getMessages = async () => {
         const response = await fetch('https://bitcoinsbackend.onrender.com/messages')
         const data = await response.json()
-
         setMessages(data.body)
       }
       getMessages()
     } catch (error) {
       console.log(error)
     }
-  }, [])
+  }, [messages])
 
   return (
     <>

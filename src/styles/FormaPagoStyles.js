@@ -59,7 +59,6 @@ const Button = styled.button`
     border-radius: 0.5rem;
     padding: 1rem 2rem;
     font-family: 'Lato', sans-serif, 'system-ui';
-    color: #FFF;
     font-weight: 900;
     font-size: 1.0rem;
     margin-top: 20px;
@@ -130,7 +129,7 @@ const Card = styled.div`
         }
         @media (min-width: 768px) {
             width: 90%;
-            height: 35rem;
+            height: 40rem;
         }
     `
 

@@ -11,7 +11,6 @@ const Message = () => {
 
   const sendMessage = async (message) => {
     try {
-      console.log(message)
       const response = await fetch('https://bitcoinsbackend.onrender.com/message', {
         method: 'POST',
         headers: {
@@ -21,7 +20,7 @@ const Message = () => {
 
       })
       const json = await response.json()
-      console.log('Success:', JSON.stringify(json))
+
       if (json.statusCode === 201) {
         Swal.fire({
           icon: 'success',
@@ -67,11 +66,16 @@ const Message = () => {
           ? <Error> Debes  tener una cuenta para poder enviar un mensaje </Error>
           : null}
         <Text> Dejanos tu comentario</Text>
+          <label htmlFor="name"></label>
         <Input
+        id="name"
             onChange={e => handleChangeData(e)}
             value={message.name}
         type="text" placeholder="Nombre" name='name' />
+
+      <label htmlFor="message"></label>
         <TextArea
+            id="message"
             onChange={e => handleChangeData(e)}
             value={message.message}
         placeholder="Mensaje" name='message' />
