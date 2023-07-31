@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import CardPremium from '../components/CardPremium'
 import CardTestimonial from '../components/CardTestimonial'
 import ContainerCard from '../components/ContainerCard'
 import Formulario from '../components/Formulario'
 import Message from '../components/Message'
-import Notification from '../components/Notification'
 import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
 import VisionMision from '../components/VisionMision'
 import bitcoinUser from '../img/bitcoinMain.jpeg'
 import imgUser1 from '../img/fotoUser1.jpeg'
 import ImagenCripto from '../img/imagen-criptos.png'
+import ConfigUserContext from '../context/ConfigUserProvider'
+import Notification from '../components/Notification'
+import getBitcoinData from '../data/getBitcoinData'
 import {
   ContainerPlanes,
   ContainerTestimonios,
@@ -27,6 +29,26 @@ const Index = () => {
   const [resultado, setResultado] = useState({})
   const [cargando, setCargando] = useState(false)
   const [messages, setMessages] = useState([])
+  const [bitcoinData, setBitcoinData] = useState({})
+  const [notification, setNotification] = useState(false)
+  const { configUser } = useContext(ConfigUserContext)
+
+  useEffect(() => {
+    if (Object.keys(configUser).length > 0) {
+      const bicointData = async () => {
+        const data = await getBitcoinData(configUser)
+        console.log(data.value)
+        setBitcoinData(data.value)
+        console.log(bitcoinData)
+        if (data) {
+          return setNotification(true)
+        } else {
+          return setNotification(false)
+        }
+      }
+      bicointData()
+    }
+  }, [])
 
   useEffect(() => {
     if (Object.keys(monedas).length > 0) {
@@ -64,7 +86,12 @@ const Index = () => {
 
   return (
     <>
-      <Notification title='¡Bienvenido!'/>
+    {
+      notification && <Notification
+
+      />
+
+    }
       <Contenedor>
         <Imagen
           src={ImagenCripto}
