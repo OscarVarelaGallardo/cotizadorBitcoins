@@ -12,7 +12,6 @@ const CardTestimonial = ({ img, testimonio, nombre, fecha, _id }
                 margin: '0 auto',
                 display: 'block',
                 marginTop: '20px'
-
               }}
 
               src={img} alt="imagen-testimonio1" border="0" />

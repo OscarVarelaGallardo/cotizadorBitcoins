@@ -12,7 +12,8 @@ const Headline = styled.h1`
     font-family: 'Lato', sans-serif, 'system-ui';
     color: #FFF;
     font-weight: 900;
-    font-size: 2rem;
+    font-size: 3rem;
+    text-transform:uppercase
     `
 const Card = styled.div`
     display: flex;
@@ -24,6 +25,7 @@ const Card = styled.div`
     padding: 1rem 2rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    width:900px
     `
 const IMG = styled.img`
     width: 100%;
@@ -59,7 +61,7 @@ const Text = styled.h2`
     `
 const P = styled.p`
     font-family: 'Lato', sans-serif, 'system-ui';
-        max-width: 1200px;
+    ax-width: 1200px;
     color: #000;
     font-weight: 400;
     font-size: 1rem;`
@@ -99,8 +101,15 @@ const Button = styled.button`
     font-size: 1rem;
     cursor: pointer;    
     `
+const HeadLine2 = styled.h2`
+        font-size:2rem;
+        color:#fff;
+        text-transform:uppercase
+
+`
 
 export {
+  HeadLine2,
   Container,
   Headline,
   Card,

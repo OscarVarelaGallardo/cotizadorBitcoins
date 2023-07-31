@@ -3,10 +3,12 @@ import { Outlet, useNavigate, Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import Footer from './Footer'
 import AuthContext from '../context/AuthProvider'
+import PremiumContext from '../context/PremiumProvider'
 
 const Layout = () => {
   const navigate = useNavigate()
   const { isAuth, setIsAuth } = useContext(AuthContext)
+  const { setIsUserPremium } = useContext(PremiumContext)
 
   return (
         <div>
@@ -54,7 +56,9 @@ const Layout = () => {
                         <Button
                             type="button"
                             onClick={() => {
+                              setIsUserPremium(false)
                               setIsAuth(false)
+
                               navigate('/')
                             }}>
                             Cerrar Sesión

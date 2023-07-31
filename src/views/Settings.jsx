@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import FormPremium from '../components/FormPremium'
 import FormularioMiCuenta from '../components/FormularioMiCuenta'
-import { useState } from 'react'
-
+import { useContext, useEffect } from 'react'
+import PremiumContext from '../context/PremiumProvider'
 import {
   Button,
   CardPremium,
@@ -14,28 +14,28 @@ import {
   P,
   Span,
   Span2,
-  TextPremium
+  TextPremium,
+  ContainerBTNVolver
 } from '../styles/SettingsStyles'
 
 const Settings = () => {
-  const [isUserPremium] = useState(true)
   const navigate = useNavigate()
+  const { isUserPremium } = useContext(PremiumContext)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
         <>
             <Container>
-                <Heading>COTIZA <Span>CRIPTOMONEDAS </Span> AL INSTANTE </Heading>
+                <Heading>COTIZA
+                  <Span>CRIPTOMONEDAS </Span>
+                   AL INSTANTE </Heading>
                 <Line />
-                <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'start',
-                      width: '100%',
-                      marginLeft: '7rem'
-                    }}
-                >
+                <ContainerBTNVolver >
                     <Button onClick={() => navigate('/')}>Volver al inicio</Button>
-                </div>
+                </ContainerBTNVolver>
                 {
                     isUserPremium
                       ? (
@@ -47,11 +47,12 @@ const Settings = () => {
 
                 }
                 <FormularioMiCuenta />
-
                 {
                     !isUserPremium
                       ? (
-                        <CardPremium>
+                        <CardPremium
+
+                        >
                             <TextPremium>¿QUIERES OBTENER <Span > NOTIFICACIONES</Span>  DE LOS CAMBIOS DE TUS MONEDAS?</TextPremium>
                             <P>Conviértete en Premium y obtén acceso a todas las funcionalidades de la aplicación</P>
                             <Linka to="/planes-premium">
@@ -60,7 +61,9 @@ const Settings = () => {
                         </CardPremium>
                         )
                       : (
-                        <FormPremium />
+                        <FormPremium
+
+                        />
                         )
                 }
             </Container>

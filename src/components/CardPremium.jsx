@@ -6,6 +6,7 @@ const CardPremium = (
     title,
     textPremium,
     cost
+
   }
 ) => {
   const navigate = useNavigate()

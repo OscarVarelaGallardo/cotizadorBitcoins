@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-const TextPremiumName = styled.h2`
+const TextPremiumName = styled.p`
 
   font-size: 1.0rem;
   font-weight: 700;
@@ -84,7 +84,7 @@ const CardTestimonio = styled.div`
 const Span = styled.span`
   color: #66A2FE;
 `
-const Heading3 = styled.h1`
+const Heading3 = styled.p`
   font-family: 'Lato', sans-serif;
   color: #FFF;
   text-align: center;
@@ -264,7 +264,7 @@ const Heading2 = styled.h1`
     font-size: 2.0rem;
     margin-bottom: 5rem;
     `
-const TextPremium2 = styled.p`
+const TextPremium2 = styled.h4`
     font-family: 'Lato', sans-serif, 'system-ui';
     color: black;
     text-align: center;

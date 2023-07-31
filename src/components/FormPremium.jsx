@@ -34,11 +34,8 @@ const FormPremium = () => {
         body: JSON.stringify(dataUser)
       })
       const data = await response.json()
-
+      setDataPremiumUser(data)
       if (response.status === 200) {
-        setDataPremiumUser({
-          ...data
-        })
         Swal.fire({
           icon: 'success',
           title: '¡Datos guardados correctamente!',
@@ -76,8 +73,6 @@ const FormPremium = () => {
     })
   }
 
-  if (dataPremiumuser === undefined) return navigate('/')
-
   return (
         <>
             <Container>
@@ -88,9 +83,10 @@ const FormPremium = () => {
                         <Select
                             name="frecuencia"
                             onChange={handleClick}
-                            defaultValue={dataPremiumuser?.frecuencia ?? ''}
+                            value={dataPremiumuser.frecuencia ?? ''}
+
                         >
-                            <option selected disabled value="">Selecciona una opción</option>
+                            <option selected disabled defaultValue="">Selecciona una opción</option>
                             <option value="nunca">Nunca</option>
                             <option value="diario">Diario</option>
                             <option value="semanal">Semanal</option>
@@ -104,7 +100,7 @@ const FormPremium = () => {
                         <Select
                             name="monedas"
                             onChange={handleClick}
-                            defaultValue={dataPremiumuser?.monedas ?? ''}
+              value={dataPremiumuser.monedas ?? ''}
                         >
                             <option selected disabled value="">Selecciona una opción</option>
                             <option value="bitcoin">Bitcoin</option>
@@ -123,7 +119,7 @@ const FormPremium = () => {
                         <Select
                             name="monedasFavoritas"
                             onChange={handleClick}
-                            defaultValue={dataPremiumuser?.monedasFavoritas ?? ''}
+              value={dataPremiumuser?.monedasFavoritas ?? ''}
                         >
                             <option selected disabled value="">Selecciona una opción</option>
                             <option value="MXN">MXN</option>
@@ -145,7 +141,7 @@ const FormPremium = () => {
                         <Select
                             name="alertas"
                             onChange={handleClick}
-                            defaultValue={dataPremiumuser?.alertas ?? ''}
+              value={dataPremiumuser?.alertas ?? ''}
                         >
                           <option selected disabled value="">Selecciona una opción</option>
                             <option value="precio">Precio</option>
@@ -157,7 +153,7 @@ const FormPremium = () => {
                         <Select
                             name="tipoAlerta"
                             onChange={handleClick}
-                            defaultValue={dataPremiumuser?.tipoAlerta ?? ''}
+              value={dataPremiumuser?.tipoAlerta ?? ''}
                         >
                           <option selected disabled value="">Selecciona una opción</option>
                             <option value="mayor">Mayor</option>

@@ -4,6 +4,12 @@ import { Link } from 'react-router-dom'
 const Span2 = styled.span`
     color: #F9A826;
 `
+const ContainerBTNVolver = styled.div`
+                    display: flex;
+                    justify-content: start;
+                    width: 100%;
+                    margin-left: 7rem;
+`
 
 const Container = styled.div`
     display: flex;
@@ -166,6 +172,6 @@ export {
   TextPremium,
   P,
   Linka,
-  Span2
-
+  Span2,
+  ContainerBTNVolver
 }

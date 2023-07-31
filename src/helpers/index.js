@@ -143,6 +143,30 @@ const getPreferences = async (id) => {
   }
 }
 
-export { formateDateForInputDate, postUserData, updateUserData, sendRegister, getPreferences }
+const getBlogs = async () => {
+  const URL = 'https://bitcoinsbackend.onrender.com/publications'
+  try {
+    const response = await fetch(URL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+
+    })
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.log(error)
+  }
+}
+export {
+  formateDateForInputDate,
+  postUserData,
+  updateUserData,
+  sendRegister,
+  getPreferences,
+  getBlogs
+
+}
 
 export default sendData

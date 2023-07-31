@@ -10,9 +10,10 @@ import Settings from './views/Settings'
 import PlanesPremium from './views/Premium/PlanesPremium'
 import FormaPago from './views/Premium/FormaPago'
 import Error from './views/Error'
-import { Blog } from './views/Blog'
+import { Blogs } from './views/Blogs'
 import { AuthProvider } from './context/AuthProvider'
 import { ConfigUserProvider } from './context/ConfigUserProvider'
+import { PremiumProvider } from './context/PremiumProvider'
 
 const router = createBrowserRouter([
   {
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/blog',
-        element: <Blog />
+        element: <Blogs />
       },
       {
         path: '*',
@@ -60,11 +61,13 @@ const router = createBrowserRouter([
 // eslint-disable-next-line react/no-deprecated
 ReactDOM.render(
   <React.StrictMode>
+    <PremiumProvider>
     <AuthProvider>
       <ConfigUserProvider>
       <RouterProvider router={router} />
       </ConfigUserProvider>
     </AuthProvider>
+    </PremiumProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
