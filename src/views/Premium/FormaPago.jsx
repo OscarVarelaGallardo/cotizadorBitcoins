@@ -26,7 +26,7 @@ const FormaPago = () => {
   const [error, setError] = useState(false)
   const handleClick = (e) => {
     e.preventDefault()
-    console.log(Object.keys(userCreditCard).length === 0)
+
     if (Object.keys(userCreditCard).length === 0) {
       setError(true)
       return
@@ -68,11 +68,13 @@ const FormaPago = () => {
             {
               error && <Error>Debes llenar todos los campos</Error>
             }
-            <Label>
+            <Label
+              htmlFor='tipeCreditCard'
+            >
               Tipo de tarjeta
               <Select
                 onChange={hadleSubmit}
-                name="tipoTarjeta">
+                name="tipeCreditCard">
                 <option value="visa">Visa</option>
                 <option value="mastercard">Mastercard</option>
                 <option value="americanExpress">American Express</option>
@@ -80,36 +82,46 @@ const FormaPago = () => {
 
             </Label>
 
-            <Label>
+            <Label
+              htmlFor='name'
+            >
               Nombre del titular
               <Input type="text" name="name"
                 onChange={hadleSubmit}
                 placeholder="Ejem: Juan Perez"
               />
             </Label>
-            <Label>
+            <Label
+              htmlFor='creditCard'
+            >
               Número de tarjeta
-              <Input type="text" name="name"
+              <Input type="text" name="creditCard"
                 placeholder="0000 0000 0000 0000"
               />
             </Label>
-            <Label>
+            <Label
+              htmlFor='date'
+            >
               Fecha de expiración
-              <Input type="text" name="name"
+              <Input type="text" name="date"
                 onChange={hadleSubmit}
                 placeholder="MM/AA"
               />
             </Label>
-            <Label>
+            <Label
+              htmlFor='codeSecurity'
+            >
               Código de seguridad
-              <Input type="text" name="name"
+              <Input type="text" name="codeSecurity"
                 placeholder="000"
                 onChange={hadleSubmit}
               />
             </Label>
-            <Label>
+            <Label
+              htmlFor='Cp'
+            >
               Código postal
-              <Input type="text" name="name"
+              <Input type="text" name="CP"
                 onChange={hadleSubmit}
                 placeholder="00000"
               />

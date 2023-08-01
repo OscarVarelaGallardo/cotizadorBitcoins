@@ -11,6 +11,7 @@ const Select = styled.select`
     font-weight: 900;
     font-size: 1.0rem;
     padding-left: 10px;
+    text-align: center;
     ::placeholder {
         text-align: center;
     }
@@ -45,6 +46,7 @@ const Input = styled.input`
     font-weight: 900;
     font-size: 1.0rem;
     padding-left: 10px;
+    text-align: center;
     ::placeholder {
         text-align: center;
     }
