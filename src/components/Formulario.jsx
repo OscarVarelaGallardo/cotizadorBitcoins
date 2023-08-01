@@ -7,9 +7,7 @@ import { monedas } from '../data/monedas'
 const InputSubmit = styled.input`
     background-color: #9497FF;
     border: none;
-    width: 40%;
-    display: block;
-    margin: 0 auto;
+    width: 100%;
     padding: 10px;
     color: #FFF;
     font-weight: 700;
@@ -22,8 +20,6 @@ const InputSubmit = styled.input`
         background-color: #7A7DFE;
         cursor: pointer;
     }
-   
-   
 `
 
 const Formulario = ({ setMonedas }) => {
@@ -68,23 +64,21 @@ const Formulario = ({ setMonedas }) => {
   }
 
   return (
-        <>
-            {error && <Error>Todos los campos son obligatorios</Error>}
+    <>
+      {error && <Error>Todos los campos son obligatorios</Error>}
 
-            <form
-                onSubmit={handleSubmit}
-            >
-                <SelectMonedas
+      <form
+        onSubmit={handleSubmit}
+      >
+        <SelectMonedas />
+        <SelectCriptomoneda />
 
-                />
-                <SelectCriptomoneda />
-
-                <InputSubmit
-                    type="submit"
-                    value="Cotizar"
-                />
-            </form>
-        </>
+        <InputSubmit
+          type="submit"
+          value="Cotizar"
+        />
+      </form>
+    </>
   )
 }
 

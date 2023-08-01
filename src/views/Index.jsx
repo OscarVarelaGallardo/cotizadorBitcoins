@@ -28,6 +28,7 @@ const Index = () => {
   const [monedas, setMonedas] = useState({})
   const [resultado, setResultado] = useState({})
   const [cargando, setCargando] = useState(false)
+
   const [messages, setMessages] = useState([])
   const [bitcoinData, setBitcoinData] = useState({})
   const [setNotification] = useState(false)
@@ -36,7 +37,7 @@ const Index = () => {
   useEffect(() => {
     if (configUser) {
       if (Object.keys(configUser).length > 0) {
-        const bicointData = async () => {
+        const bitcoin = async () => {
           const data = await getBitcoinData(configUser)
           console.log(data.value)
           setBitcoinData(data.value)
@@ -47,7 +48,7 @@ const Index = () => {
             return setNotification(false)
           }
         }
-        bicointData()
+        bitcoin()
       }
     }
   }, [])
@@ -57,15 +58,11 @@ const Index = () => {
       const cotizarCripto = async () => {
         setCargando(true)
         setResultado({})
-
         const { moneda, criptomoneda } = monedas
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`
-
         const respuesta = await fetch(url)
         const resultado = await respuesta.json()
-
         setResultado(resultado.DISPLAY[criptomoneda][moneda])
-
         setCargando(false)
       }
 
@@ -84,7 +81,11 @@ const Index = () => {
     } catch (error) {
       console.log(error)
     }
-  }, [messages])
+  }, [])
+
+  useEffect(() => {
+    window.scrollBy(0, 0)
+  }, [])
 
   return (
     <>
@@ -140,8 +141,8 @@ const Index = () => {
       <Heading3>Testimonios </Heading3>
       <ContainerTestimonios>
 
-    {
-      messages.map((message) => {
+    {messages.length > 0
+      ? messages.map((message) => {
         return (
           <CardTestimonial
             key={message._id}
@@ -152,8 +153,11 @@ const Index = () => {
           />
         )
       }
+
       )
-    }
+      : <Spinner/>
+
+      }
 
       </ContainerTestimonios>
     <Message/>

@@ -17,6 +17,7 @@ const FormPremium = () => {
   useEffect(() => {
     const getData = async () => {
       const data = await getPreferences(id)
+
       setConfigUser(data)
       setDataPremiumUser(data)
     }
@@ -100,7 +101,7 @@ const FormPremium = () => {
                         <Select
                             name="monedas"
                             onChange={handleClick}
-                          value={dataPremiumuser?.monedas ?? ''}
+                            value={dataPremiumuser?.monedas ?? ''}
                         >
                             <option selected disabled value="">Selecciona una opción</option>
                             <option value="bitcoin">Bitcoin</option>
@@ -119,21 +120,13 @@ const FormPremium = () => {
                         <Select
                             name="monedasFavoritas"
                             onChange={handleClick}
-                        value={dataPremiumuser?.monedasFavoritas ?? ''}
+                            value={dataPremiumuser?.monedasFavoritas ?? ''}
                         >
                             <option selected disabled value="">Selecciona una opción</option>
                             <option value="MXN">MXN</option>
                             <option value="USD">USD</option>
                             <option value="CAN">CAN</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="JPY">JPY</option>
-                            <option value="CHF">CHF</option>
-                            <option value="AUD">AUD</option>
-                            <option value="NZD">NZD</option>
-                            <option value="CNY">CNY</option>
-                            <option value="HKD">HKD</option>
-                            <option value="SEK">SEK</option>
+
                         </Select>
                     </Label>
                     <Label>
@@ -156,9 +149,9 @@ const FormPremium = () => {
               value={dataPremiumuser?.tipoAlerta ?? ''}
                         >
                           <option selected disabled value="">Selecciona una opción</option>
-                            <option value="mayor">Mayor</option>
-                            <option value="igual">Medio</option>
-                            <option value="menor">Menor</option>
+                            <option value="mayor">ALTO</option>
+                            <option value="igual">MEDIO</option>
+                            <option value="menor">MENOR</option>
                         </Select>
                     </Label>
                     <Label>

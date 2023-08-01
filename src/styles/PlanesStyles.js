@@ -25,6 +25,8 @@ const Container = styled.div`
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 3rem;
    `
 
 const Line = styled.div`
@@ -53,6 +55,7 @@ const Button = styled.button`
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     margin-bottom: 20px;
+    margin-top: 2rem;
     &:hover {
         background-color: #FFF;
         color: #9497FF;
@@ -64,6 +67,8 @@ const Textlist = styled.div`
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 5rem;
 
     @media (min-width: 375px) {
         display: grid;
@@ -95,6 +100,8 @@ const ContainerPlanes = styled.div`
     flex-direction: column;
     width: 100%;
     margin: 0 auto;
+    margin-bottom: 20px;
+    margin-top: 5rem;
     @media (min-width: 375px) {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
