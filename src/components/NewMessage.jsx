@@ -3,7 +3,8 @@ import { useState, useContext } from 'react'
 import AuthContext from '../context/AuthProvider'
 import Swal from 'sweetalert2'
 import Error from './Error'
-const Message = () => {
+
+const NewMessage = ({ setMessages, messages }) => {
   const [message, setMessage] = useState({})
   const [error, setError] = useState(false)
   const { user } = useContext(AuthContext)
@@ -22,15 +23,15 @@ const Message = () => {
       const json = await response.json()
 
       if (json.statusCode === 201) {
+        setMessages([
+          ...messages,
+          message
+        ])
         Swal.fire({
           icon: 'success',
           title: '¡Mensaje enviado correctamente!',
           showConfirmButton: true,
           timer: 1500
-        })
-        setMessage({
-          name: '',
-          message: ''
         })
       } else {
         Swal.fire({
@@ -69,16 +70,18 @@ const Message = () => {
           <label htmlFor="name"></label>
         <Input
         id="name"
-            onChange={e => handleChangeData(e)}
-            value={message.name}
-        type="text" placeholder="Nombre" name='name' />
+        onChange={e => handleChangeData(e)}
+        type="text"
+         placeholder="Nombre"
+          name='name' />
 
       <label htmlFor="message"></label>
         <TextArea
             id="message"
             onChange={e => handleChangeData(e)}
-            value={message.message}
-        placeholder="Mensaje" name='message' />
+
+        placeholder="Escribe tu mensaje"
+         name='message' />
         <Button
             type='submit'
             onClick={handleSubmit}
@@ -87,13 +90,11 @@ const Message = () => {
   )
 }
 
-export default Message
+export default NewMessage
 const ContainerMessage = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 50px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
 
 `
 const Button = styled.button`

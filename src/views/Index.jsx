@@ -4,12 +4,12 @@ import CardPremium from '../components/CardPremium'
 import CardTestimonial from '../components/CardTestimonial'
 import ContainerCard from '../components/ContainerCard'
 import Formulario from '../components/Formulario'
-import Message from '../components/Message'
+import NewMessage from '../components/NewMessage'
 import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
 import VisionMision from '../components/VisionMision'
 import bitcoinUser from '../img/bitcoinMain.jpeg'
-import imgUser1 from '../img/fotoUser1.jpeg'
+
 import ImagenCripto from '../img/imagen-criptos.png'
 import ConfigUserContext from '../context/ConfigUserProvider'
 
@@ -140,27 +140,12 @@ const Index = () => {
       </ContainerPlanes>
       <Heading3>Testimonios </Heading3>
       <ContainerTestimonios>
-
-    {messages.length > 0
-      ? messages.map((message) => {
-        return (
-          <CardTestimonial
-            key={message._id}
-            img={imgUser1}
-            testimonio={message.message}
-            nombre={message.name}
-            fecha={message.date}
-          />
-        )
-      }
-
-      )
-      : <Spinner/>
-
-      }
-
+         {messages.length > 0 ? <CardTestimonial messages={messages}/> : <Spinner text={'Cargando mensajes....'} />}
       </ContainerTestimonios>
-    <Message/>
+      <NewMessage
+        setMessages={setMessages}
+        messages={messages}
+      />
     </>
 
   )
