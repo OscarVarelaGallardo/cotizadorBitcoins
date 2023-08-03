@@ -76,7 +76,7 @@ const Footer = () => {
                       textAlign: 'center'
                     }}
                 >
-                      <Linke to="/deslinde-responsavilidad">Deslinde de Responsavidlidad</Linke>
+                      <Linke to="/deslinde-responsavilidad">Deslinde de Responsabilidad</Linke>
                 </li>
 
           </ul>
