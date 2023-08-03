@@ -3,9 +3,14 @@ import imgFacebook from '../img/facebookIcon.png'
 import imgInstagram from '../img/instagramIcon.png'
 import imgTwitter from '../img/twitterIcon.png'
 import imgTrusted from '../img/trustedBy.png'
+import { useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 const Footer = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
         <Container>
             <ContainerInfo>
@@ -40,11 +45,42 @@ const Footer = () => {
                 <Icon src={imgTwitter} alt="twitter" />
 
             </Icons>
-          <ul>
-              <li>
+            <ContainerInfo2>
+          <ul
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              listStyle: 'none'
+
+            }}
+
+          >
+              <li
+                style={{
+                  margin: '0',
+                  padding: '0',
+                  width: '100%',
+                  marginLeft: '1rem',
+                  textAlign: 'center'
+                }}
+              >
                   <Linke to="/aviso-privacidad">Aviso de privacidad</Linke>
               </li>
+                <li
+                    style={{
+                      margin: '0',
+                      padding: '0',
+                      width: '100%',
+                      marginLeft: '1rem',
+                      textAlign: 'center'
+                    }}
+                >
+                      <Linke to="/deslinde-responsavilidad">Deslinde de Responsavidlidad</Linke>
+                </li>
+
           </ul>
+            </ContainerInfo2>
             <Text>
                 © {new Date().getFullYear()} - Todos los derechos reservados
             </Text>
@@ -114,7 +150,11 @@ const IMG = styled.img`
     margin-bottom: 20px;
     margin-top: 8rem;
     `
-
+const ContainerInfo2 = styled.div`
+display: flex;
+justify-content: center;
+align-items: center;
+    `
 const UL = styled.ul`
     
     display: flex;
