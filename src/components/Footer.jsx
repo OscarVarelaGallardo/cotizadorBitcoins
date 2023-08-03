@@ -33,11 +33,18 @@ const Footer = () => {
             <Text>
                 Síguenos en nuestras redes sociales
             </Text>
+
             <Icons>
                 <Icon src={imgInstagram} alt="instagram" />
                 <Icon src={imgFacebook} alt="facebook" />
                 <Icon src={imgTwitter} alt="twitter" />
+
             </Icons>
+          <ul>
+              <li>
+                  <Linke to="/aviso-privacidad">Aviso de privacidad</Linke>
+              </li>
+          </ul>
             <Text>
                 © {new Date().getFullYear()} - Todos los derechos reservados
             </Text>
@@ -169,11 +176,13 @@ const Linke = styled(Link)`
     color: #FFF;
     text-align: center;
     text-decoration: none;
-    font-size: 1.7rem;
+    font-size: 1.0rem;
     font-weight: 900;
     margin-bottom: 20px;
 
+
     &:hover {
         color: #9497FF;
+        cursor: pointer;
     }
     `

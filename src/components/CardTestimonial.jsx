@@ -1,27 +1,21 @@
-import { CardTestimonio, TextPremium2, TextPremiumName } from '../styles/IndexStyles.js'
-
-const CardTestimonial = ({ img, testimonio, nombre, fecha, _id }
-) => {
+import { CardTestimonio, TextPremium2, TextPremiumName, IMGTestimonio } from '../styles/IndexStyles.js'
+import imgUser1 from '../img/fotoUser1.jpeg'
+const CardTestimonial = ({ messages }) => {
   return (
-      <CardTestimonio >
-         <img
-              style={{
-                width: '100px',
-                height: '100px',
-                borderRadius: '50%',
-                margin: '0 auto',
-                display: 'block',
-                marginTop: '20px'
-              }}
+    messages.map((message) => (
+      <CardTestimonio
+        key={message._id}
+      >
+        <IMGTestimonio src={imgUser1}
 
-              src={img} alt="imagen-testimonio1" border="0" />
-
-          <TextPremium2>{testimonio}
-        <TextPremiumName> - {nombre}</TextPremiumName>
-          </TextPremium2>
-
+        alt="user" />
+        <TextPremium2>
+          <TextPremiumName>{message.name}</TextPremiumName>
+          <p>{message.message}</p>
+        </TextPremium2>
       </CardTestimonio>
+    ))
+
   )
 }
-
 export default CardTestimonial

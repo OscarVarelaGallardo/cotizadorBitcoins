@@ -14,6 +14,7 @@ import { Blogs } from './views/Blogs'
 import { AuthProvider } from './context/AuthProvider'
 import { ConfigUserProvider } from './context/ConfigUserProvider'
 import { PremiumProvider } from './context/PremiumProvider'
+import { AvisoPrivacidad } from './views/AvisoPrivacidad'
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         element: <Blogs />
+      },
+      {
+        path: '/aviso-privacidad',
+        element: <AvisoPrivacidad />
       },
       {
         path: '*',
