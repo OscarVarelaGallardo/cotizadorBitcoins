@@ -1,4 +1,4 @@
-import { CardTestimonio, TextPremium2, TextPremiumName } from '../styles/IndexStyles.js'
+import { CardTestimonio, TextPremium2, TextPremiumName, IMGTestimonio } from '../styles/IndexStyles.js'
 import imgUser1 from '../img/fotoUser1.jpeg'
 const CardTestimonial = ({ messages }) => {
   return (
@@ -6,14 +6,8 @@ const CardTestimonial = ({ messages }) => {
       <CardTestimonio
         key={message._id}
       >
-        <img src={imgUser1}
-        style={{
-          width: '100px',
-          height: '100px',
-          borderRadius: '50%',
-          marginRight: '20px',
-          marginTop: '20px'
-        }}
+        <IMGTestimonio src={imgUser1}
+
         alt="user" />
         <TextPremium2>
           <TextPremiumName>{message.name}</TextPremiumName>

@@ -16,6 +16,18 @@ const TextPremiumName = styled.p`
   }
   `
 
+const IMGTestimonio = styled.img`
+  max-width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  @media (min-width: 768px) {
+    max-width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  `
+
 const ContainerTestimonios = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -144,7 +156,6 @@ const Imagen = styled.img`
   max-width: 400px;
   width: 80%;
   margin: 100px auto 0 auto;
-
   display: block;
 
   @media (min-width: 375px) {
@@ -324,6 +335,7 @@ export {
   Button2,
   TextPremium,
   Span2,
-  TextPremiumName
+  TextPremiumName,
+  IMGTestimonio
 
 }

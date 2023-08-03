@@ -9,7 +9,7 @@ import Resultado from '../components/Resultado'
 import Spinner from '../components/Spinner'
 import VisionMision from '../components/VisionMision'
 import bitcoinUser from '../img/bitcoinMain.jpeg'
-
+import Modal from '../components/Modal'
 import ImagenCripto from '../img/imagen-criptos.png'
 import ConfigUserContext from '../context/ConfigUserProvider'
 
@@ -28,11 +28,11 @@ const Index = () => {
   const [monedas, setMonedas] = useState({})
   const [resultado, setResultado] = useState({})
   const [cargando, setCargando] = useState(false)
-
   const [messages, setMessages] = useState([])
   const [bitcoinData, setBitcoinData] = useState({})
-  const [setNotification] = useState(false)
+
   const { configUser } = useContext(ConfigUserContext)
+  const [notification, setNotification] = useState(true)
 
   useEffect(() => {
     if (configUser) {
@@ -86,6 +86,9 @@ const Index = () => {
   useEffect(() => {
     window.scrollBy(0, 0)
   }, [])
+  const handleNotification = () => {
+    setNotification(false)
+  }
 
   return (
     <>
@@ -95,6 +98,10 @@ const Index = () => {
           src={ImagenCripto}
           alt="imagenes criptomonedas"
         />
+        {
+          notification && <Modal handleNotification={handleNotification} />
+
+        }
 
         <div >
           <Link to={'/'}

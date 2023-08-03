@@ -95,10 +95,13 @@ const ContainerMessage = styled.div`
     display: grid;
     grid-template-columns: 1fr;
     justify-items: center;
+    @media (min-width: 375px) {
+      padding: 0 20px;
+    }
+
 
 `
 const Button = styled.button`
-    width: 10%;
     padding: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -106,7 +109,7 @@ const Button = styled.button`
     outline: none;
     font-size: 1.2rem;
     font-family: 'PT Sans', sans-serif;
-    max-width: 500px;
+    max-width: 600px;
     cursor: pointer;
     background-color: #000;
     color: #fff;
