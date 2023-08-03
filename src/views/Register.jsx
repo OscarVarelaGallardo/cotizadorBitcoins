@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import img from '../img/imagen-criptos.png'
 import FormularioRegistro from '../components/FormularioRegistro'
 import { useNavigate } from 'react-router-dom'

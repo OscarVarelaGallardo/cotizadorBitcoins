@@ -15,6 +15,7 @@ import { AuthProvider } from './context/AuthProvider'
 import { ConfigUserProvider } from './context/ConfigUserProvider'
 import { PremiumProvider } from './context/PremiumProvider'
 import { AvisoPrivacidad } from './views/AvisoPrivacidad'
+import Deslinde from './views/Deslinde'
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,9 @@ const router = createBrowserRouter([
       {
         path: '/aviso-privacidad',
         element: <AvisoPrivacidad />
+      }, {
+        path: 'deslinde-responsavilidad',
+        element: <Deslinde />
       },
       {
         path: '*',
